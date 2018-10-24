@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNameFlewAway", "TheNameFlewAway\TheNameFlewAway.csproj", "{B3B2D1ED-64E3-44D6-8C05-001CE7F1FE76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Self_Hosting", "Self_Hosting\Self_Hosting.csproj", "{D3C1ABA3-4856-48C5-8B58-F7CACB059030}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B3B2D1ED-64E3-44D6-8C05-001CE7F1FE76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B2D1ED-64E3-44D6-8C05-001CE7F1FE76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B2D1ED-64E3-44D6-8C05-001CE7F1FE76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3C1ABA3-4856-48C5-8B58-F7CACB059030}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3C1ABA3-4856-48C5-8B58-F7CACB059030}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3C1ABA3-4856-48C5-8B58-F7CACB059030}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3C1ABA3-4856-48C5-8B58-F7CACB059030}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
