@@ -1,2 +1,2 @@
 # TheNameFlewAway
-Training in the second half year of 2018
+Training in the second half-year of 2018
