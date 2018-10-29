@@ -14,3 +14,7 @@ E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\obj\Debug\Self_Hosting.csproj.Co
 E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\obj\Debug\Self_Hosting.exe
 E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\obj\Debug\Self_Hosting.pdb
 E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\obj\Debug\Self_Hosting.csprojAssemblyReference.cache
+E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\bin\Debug\EntityFramework.dll
+E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\bin\Debug\EntityFramework.SqlServer.dll
+E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\bin\Debug\EntityFramework.xml
+E:\C#\ASP\Training\TheNameFlewAway\Self_Hosting\bin\Debug\EntityFramework.SqlServer.xml

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -16,11 +17,20 @@ namespace Self_Hosting
             //get self-hosting configuration object
             var config = new HttpSelfHostConfiguration("http://localhost:8080");
 
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
+            //api default return json
+            config.Formatters.JsonFormatter.MediaTypeMappings.Add(
+                new QueryStringMapping("dattype", "json", "application/json"));
+            //api also can trun xml
+            config.Formatters.XmlFormatter.MediaTypeMappings.Add(
+                new QueryStringMapping("dattype", "xml", "application/xml"));
+
+
             Console.WriteLine("Configuring HTTP Visit Route...");
             //configure the route
             config.Routes.MapHttpRoute
                 (
-                    "API Default", "{controller}/{id}", new { id = RouteParameter.Optional }
+                    "API Default", "{controller}/{action}/{id}", new { id = RouteParameter.Optional }
                 );
 
             Console.WriteLine("Open Self-hosting Server...");
