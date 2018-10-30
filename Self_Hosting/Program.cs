@@ -5,6 +5,7 @@ using System.Net.Http.Formatting;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.SelfHost;
 
 namespace Self_Hosting
@@ -16,6 +17,8 @@ namespace Self_Hosting
             Console.WriteLine("Configuring Self-hosting Server...");
             //get self-hosting configuration object
             var config = new HttpSelfHostConfiguration("http://localhost:8080");
+
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             config.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             //api default return json
