@@ -20,7 +20,7 @@ namespace Self_Hosting.Controller
         /// <param name="id">用户id</param>
         /// <returns>上传成功返回true，上传失败返回false</returns>
         [HttpPost]
-        public async Task<Dictionary<string, object>> PostFile(int id)
+        public async Task<Dictionary<string, object>> UploadFile(int id)
         {
             Dictionary<string, object> results = new Dictionary<string, object>();
             bool operate = false;
