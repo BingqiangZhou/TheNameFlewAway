@@ -21,8 +21,8 @@ namespace Self_Hosting.Controller
         /// <param name="phone">用户手机号</param>
         /// <param name="password">用户密码</param>
         /// <returns>注册成功返回true，失败返回false</returns>
-        [HttpPost]
-        public Dictionary<string,object> Register(string name, string phone,string password,byte? status)
+        [HttpGet]
+        public Dictionary<string,object> Register(string name, string phone,string password,byte status=0)
         {
             Dictionary<string, object> results = new Dictionary<string, object>();
             bool operate = false;
@@ -93,12 +93,12 @@ namespace Self_Hosting.Controller
         /// </summary>
         /// <returns>查找成功返回所有用户信息，查找失败返回false</returns>
         [HttpGet]
-        public Dictionary<string, object> FindAllUser(byte? status)
+        public Dictionary<string, object> FindAllUser(byte status=0)
         {
             Dictionary<string, object> results = new Dictionary<string, object>();
             bool operate = false;
             IEnumerable<User> users = null;
-            //搜索所有用户
+            //缺省status=0 搜索所有用户
             if (status <= 0)
             {
                 users = db.Users.ToList();
@@ -108,7 +108,7 @@ namespace Self_Hosting.Controller
                 users = db.Users.Where(
                         delegate (User user)
                         {
-                            if (user.status == status)
+                            if (user.status == status-1)
                             {
                                 return true;
                             }
