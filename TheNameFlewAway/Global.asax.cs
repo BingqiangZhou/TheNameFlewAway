@@ -13,6 +13,8 @@ namespace TheNameFlewAway
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            //强制转为https
+            GlobalFilters.Filters.Add(new RequireHttpsAttribute());
         }
     }
 }

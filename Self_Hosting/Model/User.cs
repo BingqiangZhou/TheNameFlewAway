@@ -20,17 +20,16 @@ namespace Self_Hosting.Model
         public string password { get; set; }
         public Nullable<byte> status { get; set; }
 
-        public  User()
-        {
-
-        }
-
         public User(string name, string phone, string password, byte? status)
         {
             this.name = name;
             this.phone = phone;
             this.password = password;
             this.status = status;
+        }
+        public User()
+        {
+
         }
     }
 }

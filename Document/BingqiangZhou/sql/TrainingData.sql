@@ -1,0 +1,12 @@
+INSERT INTO [ExhibitionType] VALUES (100000, N'课程设计'); GO
+INSERT INTO [ExhibitionType] VALUES (100001, N'项目实训'); GO
+INSERT INTO [ExhibitionType] VALUES (100002, N'大赛作品'); GO
+INSERT INTO [ResourceType] VALUES (100000, N'软件'); GO
+INSERT INTO [ResourceType] VALUES (100001, N'网站'); GO
+INSERT INTO [ResourceType] VALUES (100002, N'书籍'); GO
+INSERT INTO [User] VALUES (100000, N'zhou', N'123', N'123', 1); GO
+INSERT INTO [User] VALUES (100005, N'2', N'2', N'2', 0); GO
+INSERT INTO [User] VALUES (100006, N'3', N'3', N'3', 0); GO
+INSERT INTO [User] VALUES (100007, N'豆豆', N'12', N'1', 0); GO
+INSERT INTO [User] VALUES (100008, N'1', N'1', N'1', 0); GO
+INSERT INTO [User] VALUES (100009, N'5', N'5', N'5', 0); GO

@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Self_Hosting.Model;
 using System.Data.Entity;
-
+using System.Configuration;
 
 namespace Self_Hosting.Controller
 {
     public class UserController : ApiController
     {
         TrainingEntities db = new TrainingEntities();
+
+        //每页数据数
+        private int dataEveryPage = int.Parse(ConfigurationManager.AppSettings["EveryPageDataCount"]);
 
         /// <summary>
         /// 用户注册
@@ -92,8 +95,8 @@ namespace Self_Hosting.Controller
         /// 查找所有用户信息
         /// </summary>
         /// <returns>查找成功返回所有用户信息，查找失败返回false</returns>
-        [HttpGet]
-        public Dictionary<string, object> FindAllUser(byte status=0)
+        [HttpPost]
+        public Dictionary<string, object> FindAllUser(byte page=1,byte status=0)
         {
             Dictionary<string, object> results = new Dictionary<string, object>();
             bool operate = false;
@@ -118,9 +121,18 @@ namespace Self_Hosting.Controller
             }
             if (users.Count() > 0)
             {
-                operate = true;
-                results.Add("Users", users);
-                results.Add("count", users.Count());
+                //分页
+                if(page >= 1)
+                {
+                    //skip 以0开始计数
+                    users = users.Skip((page - 1) * dataEveryPage - 1).Take(dataEveryPage);
+                    if(users.Count() > 0)
+                    {
+                        operate = true;
+                        results.Add("Users", users);
+                        results.Add("count", users.Count());
+                    }
+                }
             }
             results.Add("operate", operate);
             return results;

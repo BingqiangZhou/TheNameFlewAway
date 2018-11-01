@@ -1,0 +1,403 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TrainingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdvanceKnowledge">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="resourceid" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="imageaddress" Type="nvarchar" MaxLength="32" />
+          <Property Name="resourceid" Type="int" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="128" />
+          <Property Name="context" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="AdvanceKonwledgeAndResource">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="resourceid" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="resourceid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resourceid" Type="int" />
+          <Property Name="author" Type="nvarchar" MaxLength="16" />
+          <Property Name="description" Type="nvarchar" MaxLength="1024" />
+          <Property Name="showimage" Type="nvarchar" MaxLength="32" />
+          <Property Name="coverimage" Type="nvarchar" MaxLength="32" />
+          <Property Name="typeid" Type="int" />
+          <Property Name="resourceaddress" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="ExhibitionType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="ExpandKnowledge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="key" Type="nvarchar" MaxLength="16" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+          <Property Name="url" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Instance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="resourceAddress" Type="nvarchar" MaxLength="32" />
+          <Property Name="key" Type="nvarchar" MaxLength="16" />
+          <Property Name="image" Type="nvarchar" MaxLength="32" />
+          <Property Name="title" Type="nvarchar" MaxLength="128" />
+          <Property Name="code" Type="nvarchar" MaxLength="2000" />
+          <Property Name="context" Type="nvarchar" MaxLength="2000" />
+          <Property Name="result" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Knowledge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="nvarchar" MaxLength="32" />
+          <Property Name="key" Type="nvarchar" MaxLength="32" Nullable="false" />
+          <Property Name="resourceAddress" Type="nvarchar" MaxLength="32" />
+          <Property Name="description" Type="nvarchar" MaxLength="128" />
+          <Property Name="context" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="16" />
+          <Property Name="description" Type="nvarchar" MaxLength="256" />
+          <Property Name="address" Type="nvarchar" MaxLength="32" />
+          <Property Name="typeid" Type="int" />
+          <Property Name="time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="UploadRecordForTeacher">
+          <Key>
+            <PropertyRef Name="sourceId" />
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="sourceId" Type="int" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="16" />
+          <Property Name="phone" Type="nvarchar" MaxLength="13" />
+          <Property Name="password" Type="nvarchar" MaxLength="16" />
+          <Property Name="status" Type="tinyint" />
+        </EntityType>
+        <EntityContainer Name="TrainingModelStoreContainer">
+          <EntitySet Name="AdvanceKnowledge" EntityType="Self.AdvanceKnowledge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdvanceKonwledgeAndResource" EntityType="Self.AdvanceKonwledgeAndResource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exhibition" EntityType="Self.Exhibition" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExhibitionType" EntityType="Self.ExhibitionType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpandKnowledge" EntityType="Self.ExpandKnowledge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instance" EntityType="Self.Instance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Knowledge" EntityType="Self.Knowledge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UploadRecordForTeacher" EntityType="Self.UploadRecordForTeacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrainingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdvanceKnowledge">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="resourceid" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="key" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="imageaddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="resourceid" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="context" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AdvanceKonwledgeAndResource">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="resourceid" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="resourceid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resourceid" Type="Int32" />
+          <Property Name="author" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="showimage" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="coverimage" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="typeid" Type="Int32" />
+          <Property Name="resourceaddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ExhibitionType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ExpandKnowledge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="key" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Instance">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="resourceAddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="key" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="image" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="code" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="context" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="result" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Knowledge">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="key" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="resourceAddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="context" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Resource">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="address" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="typeid" Type="Int32" />
+          <Property Name="time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="ResourceType">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UploadRecordForTeacher">
+          <Key>
+            <PropertyRef Name="sourceId" />
+            <PropertyRef Name="userId" />
+          </Key>
+          <Property Name="sourceId" Type="Int32" Nullable="false" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="Byte" />
+        </EntityType>
+        <EntityContainer Name="TrainingEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdvanceKnowledges" EntityType="Self.AdvanceKnowledge" />
+          <EntitySet Name="AdvanceKonwledgeAndResources" EntityType="Self.AdvanceKonwledgeAndResource" />
+          <EntitySet Name="Exhibitions" EntityType="Self.Exhibition" />
+          <EntitySet Name="ExhibitionTypes" EntityType="Self.ExhibitionType" />
+          <EntitySet Name="ExpandKnowledges" EntityType="Self.ExpandKnowledge" />
+          <EntitySet Name="Instances" EntityType="Self.Instance" />
+          <EntitySet Name="Knowledges" EntityType="Self.Knowledge" />
+          <EntitySet Name="Resources" EntityType="Self.Resource" />
+          <EntitySet Name="ResourceTypes" EntityType="Self.ResourceType" />
+          <EntitySet Name="UploadRecordForTeachers" EntityType="Self.UploadRecordForTeacher" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrainingModelStoreContainer" CdmEntityContainer="TrainingEntities">
+          <EntitySetMapping Name="AdvanceKnowledges">
+            <EntityTypeMapping TypeName="TrainingModel.AdvanceKnowledge">
+              <MappingFragment StoreEntitySet="AdvanceKnowledge">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="imageaddress" ColumnName="imageaddress" />
+                <ScalarProperty Name="resourceid" ColumnName="resourceid" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="context" ColumnName="context" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvanceKonwledgeAndResources">
+            <EntityTypeMapping TypeName="TrainingModel.AdvanceKonwledgeAndResource">
+              <MappingFragment StoreEntitySet="AdvanceKonwledgeAndResource">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="resourceid" ColumnName="resourceid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exhibitions">
+            <EntityTypeMapping TypeName="TrainingModel.Exhibition">
+              <MappingFragment StoreEntitySet="Exhibition">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="resourceid" ColumnName="resourceid" />
+                <ScalarProperty Name="author" ColumnName="author" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="showimage" ColumnName="showimage" />
+                <ScalarProperty Name="coverimage" ColumnName="coverimage" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="resourceaddress" ColumnName="resourceaddress" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExhibitionTypes">
+            <EntityTypeMapping TypeName="TrainingModel.ExhibitionType">
+              <MappingFragment StoreEntitySet="ExhibitionType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpandKnowledges">
+            <EntityTypeMapping TypeName="TrainingModel.ExpandKnowledge">
+              <MappingFragment StoreEntitySet="ExpandKnowledge">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="url" ColumnName="url" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instances">
+            <EntityTypeMapping TypeName="TrainingModel.Instance">
+              <MappingFragment StoreEntitySet="Instance">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="resourceAddress" ColumnName="resourceAddress" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="context" ColumnName="context" />
+                <ScalarProperty Name="result" ColumnName="result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Knowledges">
+            <EntityTypeMapping TypeName="TrainingModel.Knowledge">
+              <MappingFragment StoreEntitySet="Knowledge">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="key" ColumnName="key" />
+                <ScalarProperty Name="resourceAddress" ColumnName="resourceAddress" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="context" ColumnName="context" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Resources">
+            <EntityTypeMapping TypeName="TrainingModel.Resource">
+              <MappingFragment StoreEntitySet="Resource">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="time" ColumnName="time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResourceTypes">
+            <EntityTypeMapping TypeName="TrainingModel.ResourceType">
+              <MappingFragment StoreEntitySet="ResourceType">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UploadRecordForTeachers">
+            <EntityTypeMapping TypeName="TrainingModel.UploadRecordForTeacher">
+              <MappingFragment StoreEntitySet="UploadRecordForTeacher">
+                <ScalarProperty Name="sourceId" ColumnName="sourceId" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TrainingModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
