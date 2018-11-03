@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrainingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdvanceKnowledge">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="key" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="imageaddress" Type="nvarchar" MaxLength="32" />
+    <Property Name="description" Type="nvarchar" MaxLength="128" />
+    <Property Name="context" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="AdvanceKonwledgeAndResource">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="resourceid" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="resourceid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exhibition">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="author" Type="nvarchar" MaxLength="16" />
+    <Property Name="description" Type="nvarchar" MaxLength="1024" />
+    <Property Name="showimage" Type="nvarchar" MaxLength="32" />
+    <Property Name="coverimage" Type="nvarchar" MaxLength="32" />
+    <Property Name="typeid" Type="int" />
+    <Property Name="resourceaddress" Type="nvarchar" MaxLength="32" />
+    <Property Name="name" Type="nvarchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="ExhibitionType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="ExpandKnowledge">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="key" Type="nvarchar" MaxLength="16" />
+    <Property Name="description" Type="nvarchar" MaxLength="255" />
+    <Property Name="url" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Instance">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="resourceAddress" Type="nvarchar" MaxLength="32" />
+    <Property Name="key" Type="nvarchar" MaxLength="16" />
+    <Property Name="image" Type="nvarchar" MaxLength="32" />
+    <Property Name="title" Type="nvarchar" MaxLength="128" />
+    <Property Name="code" Type="nvarchar" MaxLength="2000" />
+    <Property Name="context" Type="nvarchar" MaxLength="2000" />
+    <Property Name="result" Type="nvarchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Knowledge">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="image" Type="nvarchar" MaxLength="32" />
+    <Property Name="key" Type="nvarchar" MaxLength="32" Nullable="false" />
+    <Property Name="resourceAddress" Type="nvarchar" MaxLength="32" />
+    <Property Name="description" Type="nvarchar" MaxLength="128" />
+    <Property Name="context" Type="nvarchar" MaxLength="2000" />
+  </EntityType>
+  <EntityType Name="Resource">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="16" />
+    <Property Name="description" Type="nvarchar" MaxLength="256" />
+    <Property Name="address" Type="nvarchar" MaxLength="32" />
+    <Property Name="typeid" Type="int" />
+    <Property Name="time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ResourceType">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="16" />
+  </EntityType>
+  <EntityType Name="UploadRecordForTeacher">
+    <Key>
+      <PropertyRef Name="sourceId" />
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="sourceId" Type="int" Nullable="false" />
+    <Property Name="userId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="16" />
+    <Property Name="phone" Type="nvarchar" MaxLength="13" />
+    <Property Name="password" Type="nvarchar" MaxLength="16" />
+    <Property Name="status" Type="tinyint" />
+  </EntityType>
+  <EntityContainer Name="TrainingModelStoreContainer">
+    <EntitySet Name="AdvanceKnowledge" EntityType="Self.AdvanceKnowledge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AdvanceKonwledgeAndResource" EntityType="Self.AdvanceKonwledgeAndResource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exhibition" EntityType="Self.Exhibition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExhibitionType" EntityType="Self.ExhibitionType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExpandKnowledge" EntityType="Self.ExpandKnowledge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Instance" EntityType="Self.Instance" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Knowledge" EntityType="Self.Knowledge" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Resource" EntityType="Self.Resource" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResourceType" EntityType="Self.ResourceType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadRecordForTeacher" EntityType="Self.UploadRecordForTeacher" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

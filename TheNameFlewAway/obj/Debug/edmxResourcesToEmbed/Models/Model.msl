@@ -2,30 +2,28 @@
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="TrainingModelStoreContainer" CdmEntityContainer="TrainingEntities">
     <EntitySetMapping Name="AdvanceKnowledges">
-      <EntityTypeMapping TypeName="TrainingModel.AdvanceKnowledge">
-        <MappingFragment StoreEntitySet="AdvanceKnowledge">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.AdvanceKnowledge)">
+        <MappingFragment StoreEntitySet="AdvanceKnowledges">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="key" ColumnName="key" />
           <ScalarProperty Name="imageaddress" ColumnName="imageaddress" />
-          <ScalarProperty Name="resourceid" ColumnName="resourceid" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="context" ColumnName="context" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AdvanceKonwledgeAndResources">
-      <EntityTypeMapping TypeName="TrainingModel.AdvanceKonwledgeAndResource">
-        <MappingFragment StoreEntitySet="AdvanceKonwledgeAndResource">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.AdvanceKonwledgeAndResource)">
+        <MappingFragment StoreEntitySet="AdvanceKonwledgeAndResources">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="resourceid" ColumnName="resourceid" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Exhibitions">
-      <EntityTypeMapping TypeName="TrainingModel.Exhibition">
-        <MappingFragment StoreEntitySet="Exhibition">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.Exhibition)">
+        <MappingFragment StoreEntitySet="Exhibitions">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="resourceid" ColumnName="resourceid" />
           <ScalarProperty Name="author" ColumnName="author" />
           <ScalarProperty Name="description" ColumnName="description" />
           <ScalarProperty Name="showimage" ColumnName="showimage" />
@@ -36,16 +34,16 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ExhibitionTypes">
-      <EntityTypeMapping TypeName="TrainingModel.ExhibitionType">
-        <MappingFragment StoreEntitySet="ExhibitionType">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.ExhibitionType)">
+        <MappingFragment StoreEntitySet="ExhibitionTypes">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ExpandKnowledges">
-      <EntityTypeMapping TypeName="TrainingModel.ExpandKnowledge">
-        <MappingFragment StoreEntitySet="ExpandKnowledge">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.ExpandKnowledge)">
+        <MappingFragment StoreEntitySet="ExpandKnowledges">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="key" ColumnName="key" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -54,8 +52,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Instances">
-      <EntityTypeMapping TypeName="TrainingModel.Instance">
-        <MappingFragment StoreEntitySet="Instance">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.Instance)">
+        <MappingFragment StoreEntitySet="Instances">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="resourceAddress" ColumnName="resourceAddress" />
           <ScalarProperty Name="key" ColumnName="key" />
@@ -68,8 +66,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Knowledges">
-      <EntityTypeMapping TypeName="TrainingModel.Knowledge">
-        <MappingFragment StoreEntitySet="Knowledge">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.Knowledge)">
+        <MappingFragment StoreEntitySet="Knowledges">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="image" ColumnName="image" />
           <ScalarProperty Name="key" ColumnName="key" />
@@ -80,8 +78,8 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Resources">
-      <EntityTypeMapping TypeName="TrainingModel.Resource">
-        <MappingFragment StoreEntitySet="Resource">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.Resource)">
+        <MappingFragment StoreEntitySet="Resources">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="description" ColumnName="description" />
@@ -92,24 +90,24 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ResourceTypes">
-      <EntityTypeMapping TypeName="TrainingModel.ResourceType">
-        <MappingFragment StoreEntitySet="ResourceType">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.ResourceType)">
+        <MappingFragment StoreEntitySet="ResourceTypes">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UploadRecordForTeachers">
-      <EntityTypeMapping TypeName="TrainingModel.UploadRecordForTeacher">
-        <MappingFragment StoreEntitySet="UploadRecordForTeacher">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.UploadRecordForTeacher)">
+        <MappingFragment StoreEntitySet="UploadRecordForTeachers">
           <ScalarProperty Name="sourceId" ColumnName="sourceId" />
           <ScalarProperty Name="userId" ColumnName="userId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="TrainingModel.User">
-        <MappingFragment StoreEntitySet="User">
+      <EntityTypeMapping TypeName="IsTypeOf(TrainingModel.User)">
+        <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="phone" ColumnName="phone" />

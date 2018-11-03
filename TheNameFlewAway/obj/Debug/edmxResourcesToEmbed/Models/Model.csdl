@@ -3,12 +3,10 @@
   <EntityType Name="AdvanceKnowledge">
     <Key>
       <PropertyRef Name="id" />
-      <PropertyRef Name="resourceid" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="key" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="imageaddress" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
-    <Property Name="resourceid" Type="Int32" Nullable="false" />
     <Property Name="description" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
     <Property Name="context" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
   </EntityType>
@@ -25,7 +23,6 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="resourceid" Type="Int32" />
     <Property Name="author" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
     <Property Name="description" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
     <Property Name="showimage" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
