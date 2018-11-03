@@ -58,7 +58,6 @@ E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\bin\System.Web.WebPages.Deplo
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\bin\System.Web.WebPages.Razor.xml
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\bin\Newtonsoft.Json.xml
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.csprojAssemblyReference.cache
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.csproj.CoreCompileInputs.cache
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.csproj.CopyComplete
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.dll

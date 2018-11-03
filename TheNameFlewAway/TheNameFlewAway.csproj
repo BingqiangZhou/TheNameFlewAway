@@ -34,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\TheNameFlewAway.xml</DocumentationFile>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -246,7 +247,7 @@
     <Compile Include="Controllers\ExhibitionsController.cs" />
     <Compile Include="Controllers\ExhibitionTypesController.cs" />
     <Compile Include="Controllers\ExpandKnowledgesController.cs" />
-    <Compile Include="Controllers\FileUploadController.cs" />
+    <Compile Include="Controllers\FileController.cs" />
     <Compile Include="Controllers\InstancesController.cs" />
     <Compile Include="Controllers\KnowledgesController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
@@ -309,6 +310,7 @@
     <Compile Include="ResponseModel\ExhibitionResponse.cs" />
     <Compile Include="ResponseModel\ExhibitionTypeResponse.cs" />
     <Compile Include="ResponseModel\ExpandKnowledgeResponse.cs" />
+    <Compile Include="ResponseModel\FileUploadResponse.cs" />
     <Compile Include="ResponseModel\InstanceResponse.cs" />
     <Compile Include="ResponseModel\KnowledgeResponse.cs" />
     <Compile Include="ResponseModel\MainResponse.cs" />

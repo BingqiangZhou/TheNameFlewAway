@@ -119,7 +119,7 @@ namespace TheNameFlewAway.Controllers
                     //删除服务器资源文件
                     if(resource.address != null)
                     {
-                        File.Delete(resourcePath+ resource.address);
+                        File.Delete(resourcePath+"/"+resource.address);
                     }
                     operate = true;
                 }

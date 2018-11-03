@@ -656,6 +656,23 @@
             </summary>
             <param name="disposing"></param>
         </member>
+        <member name="T:TheNameFlewAway.Controllers.FileController">
+            <summary>
+            文件操作相关API
+            </summary>
+        </member>
+        <member name="M:TheNameFlewAway.Controllers.FileController.FileUpload">
+            <summary>
+            上传文件
+            </summary>
+            <returns>上传成功返回true，上传失败返回false</returns>
+        </member>
+        <member name="M:TheNameFlewAway.Controllers.FileController.Dispose(System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="disposing"></param>
+        </member>
         <member name="T:TheNameFlewAway.Controllers.InstancesController">
             <summary>
             实例教程相关API
@@ -1553,6 +1570,31 @@
             </summary>
         </member>
         <member name="F:TheNameFlewAway.ResponseModel.ExpandKnowledgeResponse.GetExpandKnowledge.operate">
+            <summary>
+            操作结果标识,true 成功；false 失败
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.ResponseModel.FileUploadResponse">
+            <summary>
+            文件上传相关API返回结果格式
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.ResponseModel.FileUploadResponse.FileUpload">
+            <summary>
+            文件上传返回结果
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.ResponseModel.FileUploadResponse.FileUpload.fileName">
+            <summary>
+            服务器文件名
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.ResponseModel.FileUploadResponse.FileUpload.uploadTime">
+            <summary>
+            上传时间
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.ResponseModel.FileUploadResponse.FileUpload.operate">
             <summary>
             操作结果标识,true 成功；false 失败
             </summary>
