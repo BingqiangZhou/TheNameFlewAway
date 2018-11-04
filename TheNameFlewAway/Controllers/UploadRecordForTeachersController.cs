@@ -23,16 +23,16 @@ namespace TheNameFlewAway.Controllers
         /// <summary>
         /// 通过用户（教师）ID获取上传记录
         /// </summary>
-        /// <param name="teacherId">用户（教师）id</param>
+        /// <param name="id">用户（教师）id</param>
         /// <returns>返回上传记录信息、记录数量以及操作标识</returns>
         [HttpPost]
-        public UploadRecordForTeacherResponse.GetUploadRecordByTeacherId GetUploadRecordByTeacherId(int teacherId)
+        public UploadRecordForTeacherResponse.GetUploadRecordByTeacherId GetUploadRecordByTeacherId(int id)
         {
             bool operate = false;
             IEnumerable<UploadRecordForTeacher> uploadRecordForTeachers = db.UploadRecordForTeachers.Where(
                     delegate (UploadRecordForTeacher uploadRecordForTeacher)
                     {
-                        if (uploadRecordForTeacher.userId == teacherId)
+                        if (uploadRecordForTeacher.userId == id)
                         {
                             return true;
                         }

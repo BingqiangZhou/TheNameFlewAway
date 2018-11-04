@@ -10,6 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TheNameFlewAway.Models;
+using TheNameFlewAway.RequestModel;
 using TheNameFlewAway.ResponseModel;
 
 namespace TheNameFlewAway.Controllers
@@ -26,12 +27,13 @@ namespace TheNameFlewAway.Controllers
         /// <summary>
         /// 获取用户信息
         /// </summary>
-        /// <param name="page">页码号</param>
-        /// <param name="status">用户标识</param>
+        /// <param name="parameters">用户请求参数（页码与用户标识）</param>
         /// <returns>返回用户信息带分页与用户标识</returns>
         [HttpPost]
-        public UserResponse.GetUsers GetUsers(int page,int status)
+        public UserResponse.GetUsers GetUsers(UserRequest.GetUsersRequest parameters)
         {
+            int page = parameters.page;
+            int status = parameters.status;
             bool operate = false;
             IEnumerable<User> users = null;
             //缺省status=0 搜索所有用户
@@ -76,15 +78,14 @@ namespace TheNameFlewAway.Controllers
         /// <summary>
         /// 用户登录
         /// </summary>
-        /// <param name="phone">用户手机号</param>
-        /// <param name="password">用户密码</param>
+        /// <param name="parameters">请求参数结构</param>
         /// <returns>登录成功，返回用户信息；失败返回false</returns>
         [HttpPost]
-        public UserResponse.LoginResponse Login(string phone, string password)
+        public UserResponse.LoginResponse Login(UserRequest.LoginRequest parameters)
         {
-            User user = FindUserByPhone(phone);
+            User user = FindUserByPhone(parameters.phone);
             bool operate = false;
-            if (user != null && user.password.Equals(password))
+            if (user != null && user.password.Equals(parameters.password))
             {
                 operate = true;
             }
@@ -95,19 +96,16 @@ namespace TheNameFlewAway.Controllers
         /// <summary>
         /// 找回密码
         /// </summary>
-        /// <param name="name">用户名</param>
-        /// <param name="phone">用户手机号</param>
-        /// <param name="oldPassword">旧密码</param>
-        /// <param name="NewPassword">新密码</param>
+        /// <param name="parameters">请求参数结构</param>
         /// <returns>注册成功返回true，失败返回false</returns>
         [HttpPost]
-        public MainResponse.DefaultResponse FindPassword(string name, string phone, string oldPassword, string NewPassword)
+        public MainResponse.DefaultResponse FindPassword(UserRequest.FindPassword parameters)
         {
             bool operate = false;
-            User user = FindUserByPhone(phone);
-            if (user != null && user.name.Equals(name) && user.password.Equals(oldPassword))
+            User user = FindUserByPhone(parameters.phone);
+            if (user != null && user.name.Equals(parameters.name) && user.password.Equals(parameters.oldPassword))
             {
-                user.password = NewPassword;
+                user.password = parameters.newPassword;
                 db.Entry<User>(user).State = EntityState.Modified;
                 if (db.SaveChanges() > 0)
                 {

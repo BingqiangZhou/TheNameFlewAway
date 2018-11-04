@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TheNameFlewAway.Models;
+using TheNameFlewAway.RequestModel;
 using TheNameFlewAway.ResponseModel;
 
 namespace TheNameFlewAway.Controllers
@@ -52,8 +53,26 @@ namespace TheNameFlewAway.Controllers
             {
                 operate = false;
             }
+            List<AdvanceKonwledgeAndResource> advanceKonwledgeAndResources = db.AdvanceKonwledgeAndResources.Where(
+                    delegate (AdvanceKonwledgeAndResource advanceKonwledgeAndResource)
+                    {
+                        if (advanceKonwledgeAndResource.id == id)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                ).ToList();
+            List<Resource> resources = new List<Resource>();
+            foreach (var item in advanceKonwledgeAndResources)
+            {
+                resources.Add(db.Resources.Find(item.resourceid));
+            }
             return new AdvanceKnowledgeResponse.GetAdvanceKnowledge()
-            { advanceKnowledge = advanceKnowledge, operate = operate };
+            { advanceKnowledge = advanceKnowledge, resources = resources, operate = operate };
         }
 
         /// <summary>
@@ -81,26 +100,25 @@ namespace TheNameFlewAway.Controllers
         /// <summary>
         /// 添加进阶知识
         /// </summary>
-        /// <param name="advanceKnowledge">进阶知识对象</param>
-        /// <param name="resourceids">进阶知识资源列表</param>
+        /// <param name="request">添加进阶知识请求参数对象</param>
         /// <returns>操作成功返回true，操作失败返回false</returns>
         [HttpPost]
-        public MainResponse.DefaultResponse AddAdvanceKnowledge(AdvanceKnowledge advanceKnowledge, List<int> resourceids)
+        public MainResponse.DefaultResponse AddAdvanceKnowledge(AdvanceKnowledgeRequest.AddAdvanceKnowledge request)
         {
             bool operate = false;
-            if (!AdvanceKnowledgeExists(advanceKnowledge.id))
+            if (!AdvanceKnowledgeExists(request.advanceKnowledge.id))
             {
-                db.AdvanceKnowledges.Add(advanceKnowledge);
+                db.AdvanceKnowledges.Add(request.advanceKnowledge);
                 int count = db.SaveChanges();
                 if (count != 0)
                 {
                     operate = true;
                     //添加资源
-                    if (resourceids.Count > 0)
+                    if (request.resourceids.Count > 0)
                     {
-                        foreach (var item in resourceids)
+                        foreach (var item in request.resourceids)
                         {
-                            db.AdvanceKonwledgeAndResources.Add(new AdvanceKonwledgeAndResource(advanceKnowledge.id, item));
+                            db.AdvanceKonwledgeAndResources.Add(new AdvanceKonwledgeAndResource(request.advanceKnowledge.id, item));
                             count = db.SaveChanges();
                             if (count != 0)
                             {
@@ -131,9 +149,8 @@ namespace TheNameFlewAway.Controllers
             AdvanceKnowledge advanceKnowledge = db.AdvanceKnowledges.Find(id);
             if (advanceKnowledge != null)
             {
-                //删除进阶资源相关资源
-                db.AdvanceKonwledgeAndResources.RemoveRange(
-                    db.AdvanceKonwledgeAndResources.Where(
+                //查询到进阶知识相关资源
+                IEnumerable<AdvanceKonwledgeAndResource> advanceKonwledgeAndResources = db.AdvanceKonwledgeAndResources.Where(
                             delegate (AdvanceKonwledgeAndResource advanceKonwledgeAndResource)
                             {
                                 if (advanceKonwledgeAndResource.id == id)
@@ -145,9 +162,23 @@ namespace TheNameFlewAway.Controllers
                                     return false;
                                 }
                             }
-                        )
-                );
-                //删除进阶资源
+                        ).ToList();
+                //删除相关资源
+                List<Resource> resources = new List<Resource>();
+                foreach (var item in advanceKonwledgeAndResources)
+                {
+                    Resource resource = db.Resources.Find(item.resourceid);
+                    {
+                        if(resource != null)
+                        {
+                            resources.Add(resource);
+                        }
+                    }
+                }
+                db.Resources.RemoveRange(resources);
+                //删除进阶资源相关资源连接
+                db.AdvanceKonwledgeAndResources.RemoveRange(advanceKonwledgeAndResources);
+                //删除进阶知识
                 db.AdvanceKnowledges.Remove(advanceKnowledge);
                 int count = db.SaveChanges();
                 if (count != 0)

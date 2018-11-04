@@ -506,12 +506,11 @@
             <param name="advanceKnowledge">进阶知识对象</param>
             <returns>操作成功返回true，操作失败返回false</returns>
         </member>
-        <member name="M:TheNameFlewAway.Controllers.AdvanceKnowledgesController.AddAdvanceKnowledge(TheNameFlewAway.Models.AdvanceKnowledge,System.Collections.Generic.List{System.Int32})">
+        <member name="M:TheNameFlewAway.Controllers.AdvanceKnowledgesController.AddAdvanceKnowledge(TheNameFlewAway.RequestModel.AdvanceKnowledgeRequest.AddAdvanceKnowledge)">
             <summary>
             添加进阶知识
             </summary>
-            <param name="advanceKnowledge">进阶知识对象</param>
-            <param name="resourceids">进阶知识资源列表</param>
+            <param name="request">添加进阶知识请求参数对象</param>
             <returns>操作成功返回true，操作失败返回false</returns>
         </member>
         <member name="M:TheNameFlewAway.Controllers.AdvanceKnowledgesController.DeleteAdvanceKnowledge(System.Int32)">
@@ -768,12 +767,11 @@
             资源相关API
             </summary>
         </member>
-        <member name="M:TheNameFlewAway.Controllers.ResourcesController.GetResources(System.Int32,System.Int32)">
+        <member name="M:TheNameFlewAway.Controllers.ResourcesController.GetResources(TheNameFlewAway.RequestModel.ResourceRequest.GetResourcesRequest)">
             <summary>
             通过资源类型id获取对应类别的资源
             </summary>
-            <param name="typeId">资源类别id</param>
-            <param name="page">页码，每页5个</param>
+            <param name="parameters">获取资源请求参数对象</param>
             <returns>返回资源列表、资源数量以及操作比标识</returns>
         </member>
         <member name="M:TheNameFlewAway.Controllers.ResourcesController.ModifyResource(TheNameFlewAway.Models.Resource)">
@@ -850,7 +848,7 @@
             <summary>
             通过用户（教师）ID获取上传记录
             </summary>
-            <param name="teacherId">用户（教师）id</param>
+            <param name="id">用户（教师）id</param>
             <returns>返回上传记录信息、记录数量以及操作标识</returns>
         </member>
         <member name="M:TheNameFlewAway.Controllers.UploadRecordForTeachersController.ModifyUploadRecordForTeacher(TheNameFlewAway.Models.UploadRecordForTeacher)">
@@ -885,30 +883,25 @@
             用户操作相关API
             </summary>
         </member>
-        <member name="M:TheNameFlewAway.Controllers.UsersController.GetUsers(System.Int32,System.Int32)">
+        <member name="M:TheNameFlewAway.Controllers.UsersController.GetUsers(TheNameFlewAway.RequestModel.UserRequest.GetUsersRequest)">
             <summary>
             获取用户信息
             </summary>
-            <param name="page">页码号</param>
-            <param name="status">用户标识</param>
+            <param name="parameters">用户请求参数（页码与用户标识）</param>
             <returns>返回用户信息带分页与用户标识</returns>
         </member>
-        <member name="M:TheNameFlewAway.Controllers.UsersController.Login(System.String,System.String)">
+        <member name="M:TheNameFlewAway.Controllers.UsersController.Login(TheNameFlewAway.RequestModel.UserRequest.LoginRequest)">
             <summary>
             用户登录
             </summary>
-            <param name="phone">用户手机号</param>
-            <param name="password">用户密码</param>
+            <param name="parameters">请求参数结构</param>
             <returns>登录成功，返回用户信息；失败返回false</returns>
         </member>
-        <member name="M:TheNameFlewAway.Controllers.UsersController.FindPassword(System.String,System.String,System.String,System.String)">
+        <member name="M:TheNameFlewAway.Controllers.UsersController.FindPassword(TheNameFlewAway.RequestModel.UserRequest.FindPassword)">
             <summary>
             找回密码
             </summary>
-            <param name="name">用户名</param>
-            <param name="phone">用户手机号</param>
-            <param name="oldPassword">旧密码</param>
-            <param name="NewPassword">新密码</param>
+            <param name="parameters">请求参数结构</param>
             <returns>注册成功返回true，失败返回false</returns>
         </member>
         <member name="M:TheNameFlewAway.Controllers.UsersController.AddUser(TheNameFlewAway.Models.User)">
@@ -1417,6 +1410,106 @@
             用户无参构造函数
             </summary>
         </member>
+        <member name="T:TheNameFlewAway.RequestModel.AdvanceKnowledgeRequest">
+            <summary>
+            进阶知识
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.AdvanceKnowledgeRequest.AddAdvanceKnowledge">
+            <summary>
+            添加进阶知识的请求参数结构
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.AdvanceKnowledgeRequest.AddAdvanceKnowledge.advanceKnowledge">
+            <summary>
+            进阶函数
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.AdvanceKnowledgeRequest.AddAdvanceKnowledge.resourceids">
+            <summary>
+            资源id
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.ResourceRequest">
+            <summary>
+            资源相关请求参数结构
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.ResourceRequest.GetResourcesRequest">
+            <summary>
+            获取资源请求参数结构
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.ResourceRequest.GetResourcesRequest.typeId">
+            <summary>
+            类型id
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.ResourceRequest.GetResourcesRequest.page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.UserRequest">
+            <summary>
+            用户相关操作请求参数结构
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.UserRequest.GetUsersRequest">
+            <summary>
+            获取用户信息请求参数结构
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.GetUsersRequest.page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.GetUsersRequest.status">
+            <summary>
+            用户标识
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.UserRequest.LoginRequest">
+            <summary>
+            登录请求参数结构
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.LoginRequest.phone">
+            <summary>
+            用户手机号
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.LoginRequest.password">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="T:TheNameFlewAway.RequestModel.UserRequest.FindPassword">
+            <summary>
+            查找密码请求参数结构
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.FindPassword.name">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.FindPassword.phone">
+            <summary>
+            用户手机号
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.FindPassword.oldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.RequestModel.UserRequest.FindPassword.newPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
         <member name="T:TheNameFlewAway.ResponseModel.AdvanceKnowledgeResponse">
             <summary>
             进阶知识相关API返回结果结构
@@ -1441,6 +1534,11 @@
         <member name="F:TheNameFlewAway.ResponseModel.AdvanceKnowledgeResponse.GetAdvanceKnowledge.advanceKnowledge">
             <summary>
             进阶知识信息
+            </summary>
+        </member>
+        <member name="F:TheNameFlewAway.ResponseModel.AdvanceKnowledgeResponse.GetAdvanceKnowledge.resources">
+            <summary>
+            进阶知识知识点
             </summary>
         </member>
         <member name="F:TheNameFlewAway.ResponseModel.AdvanceKnowledgeResponse.GetAdvanceKnowledge.operate">

@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using TheNameFlewAway.Models;
+using TheNameFlewAway.RequestModel;
 using TheNameFlewAway.ResponseModel;
 
 namespace TheNameFlewAway.Controllers
@@ -29,12 +30,17 @@ namespace TheNameFlewAway.Controllers
         /// <summary>
         /// 通过资源类型id获取对应类别的资源
         /// </summary>
-        /// <param name="typeId">资源类别id</param>
-        /// <param name="page">页码，每页5个</param>
+        /// <param name="parameters">获取资源请求参数对象</param>
         /// <returns>返回资源列表、资源数量以及操作比标识</returns>
         [HttpPost]
-        public ResourceResponse.GetResources GetResources(int typeId,int page=1)
+        public ResourceResponse.GetResources GetResources(ResourceRequest.GetResourcesRequest parameters)
         {
+            int typeId = parameters.typeId;
+            int page = parameters.page;
+            if(page < 1)
+            {
+                page = 1;
+            }
             bool operate = false;
             IEnumerable<Resource> resources = db.Resources.Where(
                     delegate (Resource resource)

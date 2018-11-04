@@ -203,7 +203,6 @@
       <DependentUpon>Entity.edmx</DependentUpon>
       <LastGenOutput>Entity.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\Model.edmx.sql" />
     <Content Include="Scripts\jquery-1.6.2.js" />
     <Content Include="Scripts\jquery-1.6.2.min.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
@@ -306,6 +305,9 @@
       <DependentUpon>Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RequestModel\AdvanceKnowledgeRequest.cs" />
+    <Compile Include="RequestModel\ResourceRequest.cs" />
+    <Compile Include="RequestModel\UserRequest.cs" />
     <Compile Include="ResponseModel\AdvanceKnowledgeResponse.cs" />
     <Compile Include="ResponseModel\ExhibitionResponse.cs" />
     <Compile Include="ResponseModel\ExhibitionTypeResponse.cs" />
@@ -351,6 +353,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="resource\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

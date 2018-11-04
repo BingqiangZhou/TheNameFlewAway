@@ -36,6 +36,10 @@ namespace TheNameFlewAway.ResponseModel
             /// </summary>
             public AdvanceKnowledge advanceKnowledge;
             /// <summary>
+            /// 进阶知识知识点
+            /// </summary>
+            public List<Resource> resources;
+            /// <summary>
             /// 操作结果标识,true 成功；false 失败
             /// </summary>
             public bool operate;

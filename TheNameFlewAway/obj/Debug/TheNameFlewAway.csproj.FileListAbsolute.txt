@@ -62,3 +62,4 @@ E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.csp
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.csproj.CopyComplete
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.dll
 E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.pdb
+E:\C#\ASP\Training\TheNameFlewAway\TheNameFlewAway\obj\Debug\TheNameFlewAway.csprojAssemblyReference.cache
