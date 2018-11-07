@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AdministratorPage.Models.Exhibition>
+
+@{
+    ViewBag.Title = "作品展示管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h4>作品展示</h4>
+
+<p>
+    @Html.ActionLink("添加作品", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            作品名@*@Html.DisplayNameFor(model => model.name)*@
+        </th>
+        <th>
+            作者@*@Html.DisplayNameFor(model => model.author)*@
+        </th>
+        <th>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </th>
+        <th>
+            效果图@*@Html.DisplayNameFor(model => model.showimage)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.coverimage)
+        </th>*@
+        <th>
+            类型@*@Html.DisplayNameFor(model => model.typeid)*@
+        </th>
+        <th>
+            资源地址@*@Html.DisplayNameFor(model => model.resourceaddress)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.author)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @{
+                var image = "";
+                if(item.showimage.ToString().StartsWith("http"))
+                {
+                    image = item.showimage;
+                }
+                else
+                {
+                    image = ViewBag.ResourceAddress +"/"+ item.showimage;
+                }
+            }
+            <img src="@image" alt="效果图"  height="80"/>
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.coverimage)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.typeid)
+            @{
+                List<AdministratorPage.Models.ExhibitionType> types = ViewBag.TypeList;
+                var name = "";
+                foreach (var type in types)
+                {
+                    if (type.id == item.typeid)
+                    {
+                        name = type.name;
+                    }
+                }
+            }
+            @name
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resourceaddress)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id = item.id })
+            @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+            @Html.ActionLink("删除", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

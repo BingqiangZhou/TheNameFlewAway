@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AdministratorPage.Models.ExpandKnowledge>
+
+@{
+    ViewBag.Title = "拓展知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h4>拓展知识管理</h4>
+
+<p>
+    @Html.ActionLink("添加拓展知识", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            关键字@*@Html.DisplayNameFor(model => model.key)*@
+        </th>
+        <th>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </th>
+        <th>
+            链接@*@Html.DisplayNameFor(model => model.url)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.key)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.url)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.id }) 
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            @Html.ActionLink("删除", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,31 @@
+﻿@{
+    if (Request.Cookies["Name"] != null && Request.Cookies["Name"].Value.Equals("admin"))
+    {
+        Response.Redirect("/Users/Index");
+    }
+    ViewBag.Title = "登录";
+    ViewContext.ViewBag.Title = "后台管理";
+    Layout = "../Shared/_layoutCover.cshtml";
+}
+<link href="~/Content/signin.css" rel="stylesheet">
+
+@using (Html.BeginForm("SignIn", "Home", FormMethod.Post, new { @class= "form-signin" }))
+{
+    @Html.AntiForgeryToken()
+    @*<form class="form-signin" action="/Home/SignIn" method="post">*@
+        <h1 class="h3 mb-3 font-weight-normal">你好，管理员！</h1>
+        @*<label for="Email" class="float-left">Email address</label>
+            <label class="float-right text-danger">@ViewBag.ErrorMessage</label>
+            <input id="Email" name="Email" class="form-control" placeholder="Email address" required=""
+                   oninvalid="setCustomValidity('please enter your email.')" oninput="setCustomValidity('')" type="email" autofocus>*@
+        <label for="Password" class="float-left">密码</label>
+        <input id="Password" name="Password" class="form-control" placeholder="Password" required=""
+               oninvalid="setCustomValidity('please enter your new password.')" oninput="setCustomValidity('')" type="password">
+        @*<div class="checkbox mb-3">
+                <label>
+                    <a href="/Index/ForgetPassword">Forgot password?</a>
+                </label>
+            </div>*@
+        @*<a href="#" class="btn btn-lg btn-secondary">Learn more</a>*@
+        <button class="btn btn-lg btn-secondary btn-block" type="submit">登录</button>
+}

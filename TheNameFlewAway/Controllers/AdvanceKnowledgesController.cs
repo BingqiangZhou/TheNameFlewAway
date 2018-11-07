@@ -169,7 +169,7 @@ namespace TheNameFlewAway.Controllers
                 {
                     Resource resource = db.Resources.Find(item.resourceid);
                     {
-                        if(resource != null)
+                        if (resource != null)
                         {
                             resources.Add(resource);
                         }

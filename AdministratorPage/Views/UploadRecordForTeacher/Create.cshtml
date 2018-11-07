@@ -1,0 +1,60 @@
+﻿@model AdministratorPage.Models.Resource
+
+@{
+    ViewBag.Title = "上传";
+    Layout = "~/Views/shared/_LayoutMainForTeacher.cshtml";
+    var id = Request.Cookies["id"].Value.ToString();
+}
+
+@*<h2>Create</h2>*@
+
+@using (Html.BeginForm("Create", "UploadRecordForTeacher", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <h4>上传资源</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-row w-100">
+            @Html.Label("资源名", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-row w-100">
+            @Html.Label("资源地址", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+            @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            <input type="file" name="file" id="file" onchange="change();" /><br />
+            <script>
+                function change() {
+                    var files = document.getElementById("file").files;
+                    //alert(files[0].name);
+                    document.getElementById("address").value = files[0].name;
+                }
+            </script>
+        </div>
+        <div class="form-row w-100">
+            @Html.Label("资源类别", htmlAttributes: new { @class = "control-label col-2" })
+            @Html.DropDownListFor(model => model.typeid, ViewBag.TypeList as SelectList, new { @class = "form-control col-10" })
+            @Html.ValidationMessageFor(model => model.typeid, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-row w-100">
+            @Html.Label("资源描述", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.TextAreaFor(model => model.description, new { @class = "form-control col-md-10", @rows = "5", @maxlength = "1000" })
+            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-row w-100 justify-content-center">
+            <input type="submit" value="添加" class="btn btn-default" />
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("返回", "Index", new { id = int.Parse(id) })
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,52 @@
+﻿@model IEnumerable<AdministratorPage.Models.AdvanceKnowledge>
+
+@{
+    ViewBag.Title = "进阶知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h4>进阶知识管理</h4>
+
+<p>
+    @Html.ActionLink("添加进阶知识", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.imageaddress)
+        </th>*@
+        <th>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </th>
+        <th>
+            内容@*@Html.DisplayNameFor(model => model.context)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.key)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.imageaddress)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.context)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.id })
+            @Html.ActionLink("详情", "Details", new { id=item.id })
+            @Html.ActionLink("删除", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

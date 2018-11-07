@@ -1,0 +1,61 @@
+﻿
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title - @ViewContext.ViewBag.Title</title>
+
+    @*<script src="~/Scripts/jquery-3.0.0.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var pageId = '#@ViewBag.Title'.replace(" ","_");
+            $(".nav-link").removeClass("active");
+            $(pageId).addClass("active");
+        });
+    </script>*@
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="~/Content/bootstrap.css" />
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/cover.css" rel="stylesheet">
+</head>
+
+<body class="text-center">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <h3 class="masthead-brand">@ViewContext.ViewBag.Title</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    @*<a class="nav-link" href="/Index" id="Home">Home</a>*@
+                    <a class="nav-link active" href="#" id="Sign_in">登录</a>
+                    @*<a class="nav-link" href="/Index/SignUp" id="Sign_up">Sign up</a>*@
+                </nav>
+            </div>
+        </header>
+
+        <main role="main" class="inner cover">
+            @RenderBody()
+        </main>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+                <p>@DateTime.Now.Year - <a href="mailto:bingqiang_zhou@qq.com">@@Bingqiang Zhou</a>.</p>
+            </div>
+        </footer>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Scripts/jquery-3.0.0.slim.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>
+

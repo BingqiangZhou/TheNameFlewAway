@@ -1,0 +1,58 @@
+﻿@model IEnumerable<AdministratorPage.Models.Knowledge>
+
+@{
+    ViewBag.Title = "基础知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h4>基础知识管理</h4>
+
+<p>
+    @Html.ActionLink("添加基础知识", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>*@
+        <th>
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
+        </th>
+        <th>
+            基本描述@*@Html.DisplayNameFor(model => model.description)*@
+        </th>
+        <th>
+            具体内容@*@Html.DisplayNameFor(model => model.context)*@
+        </th>
+        <th>
+            资源地址@*@Html.DisplayNameFor(model => model.resourceAddress)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.key)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.context)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.resourceAddress)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id = item.id })
+            @*@Html.ActionLink("Details", "Details", new { id = item.id }) |*@
+            @Html.ActionLink("删除", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

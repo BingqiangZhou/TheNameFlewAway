@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AdministratorPage.Models.Resource>
+
+@{
+    ViewBag.Title = "主页";
+    Layout = "~/Views/shared/_LayoutMainForTeacher.cshtml";
+}
+
+@*<h2>Index</h2>*@
+
+<p>
+    @Html.ActionLink("上传资源", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            资源名@*@Html.DisplayNameFor(model => model.name)*@
+        </th>
+        <th>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </th>
+        <th>
+            资源地址@*@Html.DisplayNameFor(model => model.address)*@
+        </th>
+        <th>
+            资源类型@*@Html.DisplayNameFor(model => model.typeid)*@
+        </th>
+        <th>
+            上传时间@*@Html.DisplayNameFor(model => model.time)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.typeid)
+            @{
+                List<AdministratorPage.Models.ResourceType> types = ViewBag.TypeList;
+                var name = "";
+                foreach (var type in types)
+                {
+                    if (type.id == item.typeid)
+                    {
+                        name = type.name;
+                    }
+                }
+            }
+            @name
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.time)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id=item.id })
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            @Html.ActionLink("删除", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<AdministratorPage.Models.User>
+
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+@*<h2>用户管理</h2>*@
+
+<h4>用户管理</h4>
+<p>
+    @Html.ActionLink("添加教师", "Create")
+</p>
+
+<div class="row">
+    按角色查询
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            @{
+                var status = Request.RequestContext.RouteData.Values["status"];
+                if (status == null || status.Equals("0"))
+                {
+                    status = "所有";
+                }
+                else if (status.Equals("1"))
+                {
+                    status = "学生";
+                }
+                else if (status.Equals("2"))
+                {
+                    status = "老师";
+                }
+            }
+            @status
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="Index?status=0">所有</a>
+            <a class="dropdown-item" href="Index?status=2">教师</a>
+            <a class="dropdown-item" href="Index?status=1">学生</a>
+        </div>
+    </div>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            姓名@*@Html.DisplayNameFor(model => model.name)*@
+        </th>
+        <th>
+            手机号@*@Html.DisplayNameFor(model => model.phone)*@
+        </th>
+        <th>
+            密码@*@Html.DisplayNameFor(model => model.password)*@
+        </th>
+        <th>
+            身份@*@Html.DisplayNameFor(model => model.status)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @{
+                    var name = "";
+                    if (item.status == 1)
+                    {
+                        name = "教师";
+                    }
+                    else
+                    {
+                        name = "学生";
+                    }
+                }
+                @name
+            </td>
+            <td>
+                @Html.ActionLink("编辑", "Edit", new { id = item.id }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+                @Html.ActionLink("删除", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

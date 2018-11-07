@@ -52,10 +52,10 @@ namespace TheNameFlewAway.Controllers
                     string name = item.Headers.ContentDisposition.FileName.Replace("\"", "");
                     var str = name.Split('.');
                     Console.WriteLine(str);
-                    if(str.Length >= 2)
+                    if (str.Length >= 2)
                     {
                         date = DateTime.Now;
-                        fileName = date.ToFileTimeUtc()+"."+str[str.Length - 1];
+                        fileName = date.ToFileTimeUtc() + "." + str[str.Length - 1];
                         //将文件转为(移动)正确的文件
                         File.Move(item.LocalFileName, Path.Combine(rootPath, fileName));
                         //File.Delete(item.LocalFileName);
@@ -73,7 +73,7 @@ namespace TheNameFlewAway.Controllers
                 }
             }
             return new FileUploadResponse.FileUpload()
-            { fileName = fileName,uploadTime = date.ToString(), operate = operate };
+            { fileName = fileName, uploadTime = date.ToString(), operate = operate };
         }
         /// <summary>
         /// 

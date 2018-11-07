@@ -13,10 +13,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2018 09:12:45</publishTime>
     </File>
     <File Include="Areas/HelpPage/TestClient.css">
-      <publishTime>11/02/2018 09:52:05</publishTime>
+      <publishTime>11/06/2018 14:36:37</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/Api.cshtml">
-      <publishTime>11/02/2018 14:41:06</publishTime>
+      <publishTime>11/06/2018 14:33:46</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/ApiGroup.cshtml">
       <publishTime>11/02/2018 09:12:44</publishTime>
@@ -58,10 +58,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>11/02/2018 09:12:43</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/TestClientDialogs.cshtml">
-      <publishTime>11/02/2018 09:52:05</publishTime>
+      <publishTime>11/06/2018 14:36:37</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/TestClientReferences.cshtml">
-      <publishTime>11/02/2018 09:52:04</publishTime>
+      <publishTime>11/06/2018 14:36:37</publishTime>
     </File>
     <File Include="Areas/HelpPage/Views/Help/DisplayTemplates/TextSample.cshtml">
       <publishTime>11/02/2018 09:12:43</publishTime>
@@ -208,13 +208,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/10/2018 22:42:40</publishTime>
     </File>
     <File Include="bin/TheNameFlewAway.dll">
-      <publishTime>11/04/2018 15:10:46</publishTime>
+      <publishTime>11/07/2018 10:34:22</publishTime>
     </File>
     <File Include="bin/TheNameFlewAway.pdb">
-      <publishTime>11/04/2018 15:10:46</publishTime>
+      <publishTime>11/07/2018 10:34:22</publishTime>
     </File>
     <File Include="bin/TheNameFlewAway.xml">
-      <publishTime>11/04/2018 15:10:46</publishTime>
+      <publishTime>11/07/2018 10:34:22</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>11/02/2018 09:52:03</publishTime>
@@ -408,29 +408,134 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Models/Model.edmx.sql">
       <publishTime>11/02/2018 21:58:05</publishTime>
     </File>
+    <File Include="Scripts/esm/popper-utils.js">
+      <publishTime>11/05/2018 16:26:17</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper-utils.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper-utils.min.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper-utils.min.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper.min.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/esm/popper.min.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
     <File Include="Scripts/jquery-1.6.2.js">
-      <publishTime>11/02/2018 09:51:55</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
     </File>
     <File Include="Scripts/jquery-1.6.2.min.js">
-      <publishTime>11/02/2018 09:51:55</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.js">
+      <publishTime>11/05/2018 16:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.min.js">
+      <publishTime>11/05/2018 16:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.min.map">
+      <publishTime>11/05/2018 16:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.slim.js">
+      <publishTime>11/05/2018 16:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.slim.min.js">
+      <publishTime>11/05/2018 16:26:14</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.0.0.slim.min.map">
+      <publishTime>11/05/2018 16:26:13</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.9.2.js">
-      <publishTime>11/02/2018 09:51:59</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
     </File>
     <File Include="Scripts/jquery-ui-1.9.2.min.js">
-      <publishTime>11/02/2018 09:51:59</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>11/05/2018 16:29:09</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>11/05/2018 16:29:09</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>11/05/2018 16:29:10</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>11/05/2018 16:29:10</publishTime>
     </File>
     <File Include="Scripts/knockout-2.2.0.debug.js">
-      <publishTime>11/02/2018 09:52:04</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
     </File>
     <File Include="Scripts/knockout-2.2.0.js">
-      <publishTime>11/02/2018 09:52:04</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
+    </File>
+    <File Include="Scripts/popper-utils.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper-utils.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper-utils.min.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper-utils.min.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper.min.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/popper.min.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/README.md">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper-utils.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper-utils.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper-utils.min.js">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper-utils.min.js.map">
+      <publishTime>11/05/2018 16:26:16</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper.js">
+      <publishTime>11/05/2018 16:26:15</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper.js.map">
+      <publishTime>11/05/2018 16:26:15</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper.min.js">
+      <publishTime>11/05/2018 16:26:15</publishTime>
+    </File>
+    <File Include="Scripts/umd/popper.min.js.map">
+      <publishTime>11/05/2018 16:26:15</publishTime>
     </File>
     <File Include="Scripts/WebApiTestClient.js">
-      <publishTime>11/02/2018 09:52:04</publishTime>
+      <publishTime>11/04/2018 15:25:35</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>11/03/2018 16:12:03</publishTime>
+      <publishTime>11/06/2018 15:10:34</publishTime>
     </File>
   </ItemGroup>
 </Project>

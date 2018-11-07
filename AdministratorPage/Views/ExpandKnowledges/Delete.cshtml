@@ -1,0 +1,49 @@
+﻿@model AdministratorPage.Models.ExpandKnowledge
+
+@{
+    ViewBag.Title = "拓展知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h3>删除拓展知识</h3>
+
+<h4>您确定要将该拓展知识删除吗？</h4>
+<div>
+    @*<h4>ExpandKnowledge</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.key)
+        </dd>
+
+        <dt>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            链接@*@Html.DisplayNameFor(model => model.url)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.url)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

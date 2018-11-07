@@ -69,7 +69,7 @@ namespace TheNameFlewAway.Controllers
             {
                 db.Entry(knowledge).State = EntityState.Modified;
                 int count = db.SaveChanges();
-                if(count != 0)
+                if (count != 0)
                 {
                     operate = true;
                 }

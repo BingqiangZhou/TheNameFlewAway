@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AdministratorPage.Models.Instance>
+
+@{
+    ViewBag.Title = "实例教程管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h4>实例教程管理</h4>
+
+<p>
+    @Html.ActionLink("添加实例", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.image)
+        </th>*@
+        <th>
+            题目@*@Html.DisplayNameFor(model => model.title)*@
+        </th>
+        <th>
+            题目分析@*@Html.DisplayNameFor(model => model.context)*@
+        </th>
+        <th>
+            代码以及注解@*@Html.DisplayNameFor(model => model.code)*@
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.result)
+        </th>*@
+        <th>
+            资源地址@*@Html.DisplayNameFor(model => model.resourceAddress)*@
+        </th>
+        <th>操&nbsp;作</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.key)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.image)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.context)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.code)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.result)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.resourceAddress)
+        </td>
+        <td>
+            @Html.ActionLink("编辑", "Edit", new { id = item.id })
+            @*@Html.ActionLink("Details", "Details", new { id=item.id }) |*@
+            @Html.ActionLink("删除", "Delete", new { id = item.id })
+        </td>
+    </tr>
+}
+
+</table>

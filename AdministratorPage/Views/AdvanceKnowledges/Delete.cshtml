@@ -1,0 +1,57 @@
+﻿@model AdministratorPage.Models.AdvanceKnowledge
+
+@{
+    ViewBag.Title = "进阶知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h3>删除进阶知识</h3>
+
+<h4>请确定要删除该进阶知识吗？</h4>
+<div>
+    @*<h4>AdvanceKnowledge</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.key)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.imageaddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.imageaddress)
+        </dd>*@
+
+        <dt>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            内容@*@Html.DisplayNameFor(model => model.context)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.context)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,75 @@
+﻿@model AdministratorPage.Models.Instance
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Instance</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.resourceAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resourceAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.key)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.key)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.context)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.context)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.result)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

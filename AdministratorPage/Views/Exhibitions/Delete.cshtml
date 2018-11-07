@@ -1,0 +1,71 @@
+﻿@model AdministratorPage.Models.Exhibition
+
+@{
+    ViewBag.Title = "作品展示管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h3>删除作品</h3>
+
+<h4>您确定要删除该作品吗？</h4>
+<div>
+    @*<h4>Exhibition</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            作品名@*@Html.DisplayNameFor(model => model.name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+        <dt>
+            作者@*@Html.DisplayNameFor(model => model.author)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.author)
+        </dd>
+
+        <dt>
+            效果图@*@Html.DisplayNameFor(model => model.showimage)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.showimage)
+        </dd>
+
+        <dt>
+            类型@*@Html.DisplayNameFor(model => model.typeid)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeid)
+        </dd>
+
+        <dt>
+            资源地址@*@Html.DisplayNameFor(model => model.resourceaddress)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resourceaddress)
+        </dd>
+
+        <dt>
+            描述@*@Html.DisplayNameFor(model => model.description)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

@@ -123,9 +123,9 @@ namespace TheNameFlewAway.Controllers
                 if (count != 0)
                 {
                     //删除服务器资源文件
-                    if(resource.address != null)
+                    if (resource.address != null)
                     {
-                        File.Delete(resourcePath+"/"+resource.address);
+                        File.Delete(resourcePath + "/" + resource.address);
                     }
                     operate = true;
                 }
@@ -133,7 +133,7 @@ namespace TheNameFlewAway.Controllers
             return new MainResponse.DefaultResponse()
             { operate = operate };
         }
-        
+
         /// <summary>
         /// 
         /// </summary>

@@ -1,0 +1,66 @@
+﻿@model AdministratorPage.Models.Resource
+
+@{
+    ViewBag.Title = "删除";
+    Layout = "~/Views/shared/_LayoutMainForTeacher.cshtml";
+    var id = Request.Cookies["id"].Value.ToString();
+}
+
+<div>
+    <h3>删除资源</h3>
+    <h4>您确认要删除当前资源吗？</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            资源名@*@Html.DisplayNameFor(model => model.name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            资源描述@*@Html.DisplayNameFor(model => model.description)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            资源地址@*@Html.DisplayNameFor(model => model.address)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.address)
+        </dd>
+
+        <dt>
+            资源类型@*@Html.DisplayNameFor(model => model.typeid)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.typeid)
+        </dd>
+
+        <dt>
+            资源上传时间@*@Html.DisplayNameFor(model => model.time)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.time)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index",new { id=int.Parse(id)})
+        </div>
+    }
+</div>
+

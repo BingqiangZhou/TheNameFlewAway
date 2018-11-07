@@ -125,7 +125,7 @@ namespace TheNameFlewAway.Controllers
         public MainResponse.DefaultResponse AddUser(User user)
         {
             bool operate = false;
-            if (!UserExists(user.id))
+            if (!UserExists(user.id) && FindUserByPhone(user.phone) == null)
             {
                 db.Users.Add(user);
                 int count = db.SaveChanges();

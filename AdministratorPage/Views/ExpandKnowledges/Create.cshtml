@@ -1,0 +1,48 @@
+﻿@model AdministratorPage.Models.ExpandKnowledge
+
+@{
+    ViewBag.Title = "拓展知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h4>添加拓展知识</h4>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    @*<h4>ExpandKnowledge</h4>*@
+    <hr />
+    <div class="form-row w-100">
+        @Html.Label("关键词", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.key, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+        @Html.ValidationMessageFor(model => model.key, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-row w-100">
+        @Html.Label("链接", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.url, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+        @Html.ValidationMessageFor(model => model.url, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-row w-100">
+        @Html.Label("资源描述", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextAreaFor(model => model.description, new { @class = "form-control col-md-10", @rows = "5" })
+        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-row w-100 justify-content-center">
+        <input type="submit" value="添加" class="btn btn-default" />
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("返回", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

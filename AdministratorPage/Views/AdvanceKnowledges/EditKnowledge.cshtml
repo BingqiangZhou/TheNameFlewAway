@@ -1,0 +1,63 @@
+﻿@model AdministratorPage.Models.Resource
+
+@{
+    ViewBag.Title = "进阶知识管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+    var id = Request.QueryString["resourceid"];
+    var ak = Request.RequestContext.RouteData.Values["id"].ToString();
+}
+<h4>添加进阶知识点</h4>
+
+
+@using (Html.BeginForm("ConfirmEditKnowledge", "AdvanceKnowledges", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    @*<h4>AdvanceKnowledge</h4>*@
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-row w-100">
+        <label for="ak" class="control-label col-md-2">进阶知识id</label>
+        <input name="ak" id="ak" value="@ak" class="form-control col-md-10" readonly>
+    </div>
+    <div class="form-row w-100">
+        <label for="id" class="control-label col-md-2">进阶知识点id</label>
+        <input name="id" id="id" value="@id" class="form-control col-md-10" readonly>
+    </div>
+    <div class="form-row w-100">
+        @Html.Label("关键词", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-row w-100">
+        @Html.Label("描述", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.TextAreaFor(model => model.description, new { @class = "form-control col-md-10", @rows = "3", @maxlength = "1000" })
+        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-row w-100">
+        @Html.Label("资源地址", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control col-md-10" } })
+        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+        <input type="file" name="file" id="file" onchange="change();" /><br />
+        <script>
+            function change() {
+                var files = document.getElementById("file").files;
+                //alert(files[0].name);
+                document.getElementById("address").value = files[0].name;
+            }
+        </script>
+    </div>
+
+    <div class="form-row w-100 justify-content-center">
+        <input type="submit" value="保存" class="btn btn-default" />
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("返回", "Details",new { id=int.Parse(ak) })
+</div>
+

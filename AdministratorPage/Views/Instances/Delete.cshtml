@@ -1,0 +1,81 @@
+﻿@model AdministratorPage.Models.Instance
+
+@{
+    ViewBag.Title = "实例教程管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+<h3>删除实例教程</h3>
+
+<h4>您确定要删除该实例教程吗？</h4>
+<div>
+    @*<h4>Instance</h4>*@
+    <hr />
+    <dl class="dl-horizontal">
+        @*<dt>
+            @Html.DisplayNameFor(model => model.resourceAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.resourceAddress)
+        </dd>*@
+
+        <dt>
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.key)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.image)
+        </dd>*@
+
+        <dt>
+            题目@*@Html.DisplayNameFor(model => model.title)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            题目分析@*@Html.DisplayNameFor(model => model.context)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.context)
+        </dd>
+
+        <dt>
+            代码以及注解@*@Html.DisplayNameFor(model => model.code)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.code)
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.result)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

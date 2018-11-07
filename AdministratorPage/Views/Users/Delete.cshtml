@@ -1,0 +1,59 @@
+﻿@model AdministratorPage.Models.User
+
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/shared/_LayoutMain.cshtml";
+}
+
+@*<h2>删除用户</h2>*@
+
+@*<h3>您确认要删除该用户吗？</h3>*@
+<div>
+    <h3>删除用户</h3>
+    <h4>您确认要删除该用户吗？</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            姓名@*@Html.DisplayNameFor(model => model.name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            手机号@*@Html.DisplayNameFor(model => model.phone)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.phone)
+        </dd>
+
+        <dt>
+            密码@*@Html.DisplayNameFor(model => model.password)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.password)
+        </dd>
+
+        @*<dt>
+                @Html.DisplayNameFor(model => model.status)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.status)
+            </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
+        </div>
+    }
+</div>

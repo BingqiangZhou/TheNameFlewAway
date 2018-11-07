@@ -42,7 +42,7 @@ namespace TheNameFlewAway.Controllers
                         }
                     }
                 );
-            if (uploadRecordForTeachers.Count() > 0) 
+            if (uploadRecordForTeachers.Count() > 0)
             {
                 operate = true;
             }
