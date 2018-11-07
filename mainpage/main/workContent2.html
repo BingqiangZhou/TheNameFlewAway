@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div id="article">
+    <div v-show="show">
+    <div class="news-list-item clearfix" v-for="item in exhibitionPartInfos">
+        <div class="col-xs-4">
+            <img :src="item.coverimage" alt=""/>
+        </div>
+        <div class="col-xs-7">
+            <a :href= getInfosHref(item.id) class="title">{{item.name}}</a>
+            <div class="info">
+                    <p>作者:  {{item.author}}</p>
+                    <p>作品简介:  {{item.description}}</p> .
+
+            </div>
+        </div>
+</div>
+</div>
+    <div v-show="director">
+        <h2 class="news-title">学生作品展示指南</h2>
+        <div class="news-status">
+            <div class="label label-default">学生作品展示</div>
+        </div>
+        <div class="news-content">
+            <blockquote>      <!--内容概括-->
+                <p>学生课程设计、项目实训的优秀作品及大赛作品展示</p>
+            </blockquote>
+            <!-- <div>
+                 <img :src="info.image" alt="" style="width: 500px"/>
+             </div>-->
+            <div>学生作品展示模块，包括学生课程设计、项目实训的优秀作品及大赛作品等。作品展示要求有标题、作者名、内容介绍、效果展示、附件(相关文档、源代码或发布文件)等内容。
+                相关资源包括相关软件资源、优秀网站和电予书下载等。</div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#article',
+        data:{
+            exhibitionPartInfos:[],
+            id:'',
+            show:false,
+            director:true
+
+        },
+        created:function(){
+            this.id = this.GetQueryString("id");
+            this.getInfo();
+        },
+        methods:{
+            GetQueryString:function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = decodeURI(window.location.search).substr(1).match(reg);
+                if (r != null) {return unescape(r[2]);}else{return null;}
+            },
+            getInfo:function(){
+                console.log("123");
+                console.log(this.id);
+                if(this.id != null){
+                    this.director = false;
+                    this.show = true;
+                }
+                this.$http.post('https://bingqiangzhou.cn/trainingapi/ExhibitionTypes/GetExhibitionByExhibitionTypeId/'+this.id, {},{emulateJSON:true}).then(function (result) {
+                    this.exhibitionPartInfos = result.data.exhibitionPartInfos;
+                    console.log("11111");
+                    console.log(this.exhibitionPartInfos);
+                })
+            },
+            getInfosHref:function(val){
+                return 'details.html?id='+val;
+            }
+        }
+    })
+</script>
+</body>
+</html>

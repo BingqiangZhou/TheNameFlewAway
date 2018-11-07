@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+    <style>
+        .test-textarea {
+            width: 100%;
+            line-height: 20px;
+            /* max-height: 150px;*/
+            height: auto;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3px;
+            outline: 0;
+            border: 1px solid #ccc;
+            font-size: 12px;
+            word-wrap: break-word;
+            overflow-x: hidden;
+            overflow-y: auto;
+            -webkit-user-modify: read-write-plaintext-only;
+            border:none;
+            overflow:hidden; resize:none;
+        }
+    </style>
+</head>
+<body>
+<div id="article">
+<div v-show="show">
+<h2 class="news-title">{{info.key}}</h2>
+<div class="news-status">25k阅读 • 35分钟之前发布
+    <div class="label label-default">java</div>
+</div>
+<div class="news-content">
+    <blockquote>      <!--内容概括-->
+        <p>{{info.description}} {{info.title}}</p>
+    </blockquote>
+    <div class="test-textarea"  contenteditable="true">{{info.code}}</div>
+    <div>
+        <div class="test-textarea"  contenteditable="true">{{info.context}}</div>
+    </div>
+
+</div>
+</div>
+<div v-show="director">
+        <h2 class="news-title">{{title}}</h2>
+        <div class="news-status">
+            <div class="label label-default">java知识</div>
+        </div>
+        <div class="news-content">
+            <blockquote>      <!--内容概括-->
+                <p>{{description}}</p>
+            </blockquote>
+            <div>{{content}}</div>
+
+ </div>
+
+</div>
+</div>
+
+<script>
+    new Vue({
+        el:'#article',
+        data:{
+               info:{},
+               htmlName:this.getHtmlDocName,
+               url:'',
+               id:'',
+               show:false,
+//               context:'',
+               director:true,
+               title:'基础知识指南',
+               description:'基础知识模块提供有关Java工具软件及Java基础语法知识的教学资源',
+               content:'基础知识模块提供有关Java工具软件及Java基础语法知识的教学资源。这部分系统归纳总结了本课程基本理论知识及Eclipse软件操作的基本方法、技巧，可供学生自学，可作为学生入门学习教程或基础知识资料库。基础知识模块的每一个知识点只包含一个教学资源文档。'
+
+        },
+        created:function(){
+           this.id = this.GetQueryString("id");
+            this.getHtmlDocName();
+            this.getInfo();
+
+        },
+        methods:{
+            GetQueryString:function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = decodeURI(window.location.search).substr(1).match(reg);
+                if (r != null) {return unescape(r[2]);}else{return null;}
+            },
+            getInfo:function(){
+                console.log("1111");
+                console.log(this.id);
+                console.log(this.director);
+                if(this.id != null){
+                    this.director = false;
+                    this.show = true;
+                }
+                if(this.htmlName == "index"){
+                    this.url = "https://bingqiangzhou.cn/trainingapi/Knowledges/GetKnowledge/";
+                }else if(this.htmlName == "Instances"){
+                    this.url = "https://bingqiangzhou.cn/trainingapi/Instances/GetInstance/";
+                    this.title = "实例教程指南";
+                    this.description = "简单到复杂的Java实例讲解文档和代码";
+                    this.content = "实例教程模块提供了从简单到复杂的Java实例讲解文档和代码，以知识点为线，采取循序渐进的方式，引导学生对相关知识的掌握。每一个实例教程包含实例题目、实例内容、实例讲解、运行结果和代码附件。";
+
+                }
+
+                this.$http.post(this.url+this.id, {},{emulateJSON:true}).then(function (result) {
+                    this.info = this.getFirstAttr(result.data);
+                    console.log(this.info);
+                    console.log(this.info.context);
+//                    this.getAddress();
+                })
+                },
+            getFirstAttr:function(obj){
+                for (var k in obj) return obj[k];
+            },
+            getHtmlDocName:function(){
+                var str = decodeURI(window.location.href);
+                str = str.substring(str.lastIndexOf("/") + 1);
+                str = str.substring(0, str.lastIndexOf("."));
+                this.htmlName =  str;
+            },
+           /* getAddress:function(){
+                   this.info.context = this.info.context.replaceAll("\r\n","<br/>");
+             },*/
+                }
+    })
+</script>
+</body>
+</html>

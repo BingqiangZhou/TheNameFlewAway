@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+    <style>
+        p{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="article">
+<div class="col-md-9">
+    <h2 class="news-title">{{exhibition.name}}</h2>
+    <div class="news-status">
+        <div class="label label-default">作者: {{exhibition.author}}</div>
+    </div>
+    <div class="news-content">
+
+        <div>
+          <p> 作品描述:</p> {{exhibition.description}}
+        </div>
+
+        <div>
+           <p>作品效果图:</p> <img :src="exhibition.showimage" alt="" style="width: 500px"/>
+        </div>
+        <div>
+            <template v-if="address == '1'">
+                <p>下载地址:</p> <a href="#" >请登录再下载</a> </template>
+            <template v-else>
+                <p>下载地址:</p> <a :href="address" >{{exhibition.resourceaddress}}</a>
+            </template>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    new Vue({
+        el:'#article',
+        data:{
+
+            exhibition:[],
+            id:'',
+            address:''
+
+        },
+        created:function(){
+            this.GetQueryString("id");
+            this.getInfo();
+        },
+        methods:{
+            GetQueryString:function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = decodeURI(window.location.search).substr(1).match(reg);
+//                console.log(r);
+                if (r != null) {this.id=unescape(r[2]); console.log(this.id);}; return null;
+            },
+            getInfo:function(){
+                console.log("123");
+                console.log(this.id);
+                this.$http.post('https://bingqiangzhou.cn/trainingapi/Exhibitions/GetExhibition/'+this.id, {},{emulateJSON:true}).then(function (result) {
+                    this.exhibition = result.data.exhibition;
+                    console.log("11111");
+                    console.log(this.exhibition);
+                    console.log(this.exhibition.resourceaddress);
+                    this.address = this.exhibition.resourceaddress;
+                    this.getAddress();
+                })
+            },
+            getInfosHref:function(val){
+                return 'details.html?id='+val;
+            },
+            getAddress:function(){
+
+
+                    if(this.getCookie("username") != ""){
+                        if(this.address.indexOf("http") != 0)
+                        {
+                            this.address = "https://bingqiangzhou.cn/training/AppResources/"+ this.address;
+                            console.log("1111111111111");
+                        }
+                    }
+                    else
+                    {
+                        this.address = '1'
+                    }
+            },
+            getCookie:function(name){
+                var strCookie=unescape(document.cookie);
+                var arrCookie=strCookie.split("; ");
+                for(var i=0;i<arrCookie.length;i++){
+                    var arr=arrCookie[i].split("=");
+                    if(arr[0]==name)return arr[1];
+                }
+                return "";
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

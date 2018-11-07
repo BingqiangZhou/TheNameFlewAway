@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div id="article">
+    <div v-show="show">
+    <div class="news-list-item clearfix" v-for="item in resources">
+        <div class="col-xs-11">
+            <a :href="item.address" class="title">{{item.name}}</a>
+            <div class="info">
+                    <p>{{item.description}}</p> .
+
+            </div>
+        </div>
+        </div>
+</div>
+    <div v-show="director">
+        <h2 class="news-title">{{title}}</h2>
+        <div class="news-status">
+            <div class="label label-default">java知识</div>
+        </div>
+        <div class="news-content">
+            <blockquote>      <!--内容概括-->
+                <p>{{description}}</p>
+            </blockquote>
+
+            <div>{{content}}</div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#article',
+        data:{
+
+            resources:[],
+            id:'',
+            show:false,
+            director:true,
+            title:'进阶知识知识指南',
+            description:'Java高级编程知识的教学资源',
+            content:'进阶知识模块提供Java高级编程知识的教学资源。此模块中的每一个进阶知识都是一个专题，包含多个教学资源文档。'
+
+
+        },
+        created:function(){
+            this.id = this.GetQueryString("id");
+            this.getInfo();
+        },
+        methods:{
+            GetQueryString:function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = decodeURI(window.location.search).substr(1).match(reg);
+//                console.log(r);
+                if (r != null) {return unescape(r[2]);}else{return null;}
+            },
+            getInfo:function(){
+                /*console.log("123");
+                console.log(this.id);*/
+                if(this.id != null){
+                    this.director = false;
+                    this.show = true;
+                }
+                this.$http.post('https://bingqiangzhou.cn/trainingapi/AdvanceKnowledges/GetAdvanceKnowledge/'+this.id, {},{emulateJSON:true}).then(function (result) {
+                    this.resources = result.data.resources;
+                    console.log(this.resources);
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

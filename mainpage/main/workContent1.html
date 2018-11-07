@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+    <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
+<div id="article">
+    <div v-show="show">
+    <div class="news-list-item clearfix">
+        <!--<div class="col-xs-4">
+        </div>-->
+        <div class="col-xs-11">
+            <a :href="expandKnowledge.url" class="title">{{expandKnowledge.key}}</a>
+            <div class="info">
+                    <p>{{expandKnowledge.description}}</p>
+            </div>
+        </div>
+    </div>
+ </div>
+    <div v-show="director">
+        <h2 class="news-title">拓展知识知识指南</h2>
+        <div class="news-status">
+            <div class="label label-default">java拓展知识</div>
+        </div>
+        <div class="news-content">
+            <blockquote>      <!--内容概括-->
+                <p>拓展知识模块精选于网络上的相关知识</p>
+            </blockquote>
+            <!-- <div>
+                 <img :src="info.image" alt="" style="width: 500px"/>
+             </div>-->
+            <div>拓展知识模块精选了网络上的相关知识，作为学生额外学习的内容。既可拓宽学生知识面，又可以加速加深学生对本课程的理解，提高他们对专业知识的实际应用能力。</div>
+
+        </div>
+
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#article',
+        data:{
+            /* id:'',
+             image:'',
+             keywords:'',
+             description:'',
+             context:'',*/
+            expandKnowledge:{},
+            id:'',
+            show:false,
+            director:true
+
+
+        },
+        created:function(){
+            this.id = this.GetQueryString("id");
+            this.getInfo();
+
+        },
+        methods:{
+            GetQueryString:function(name){
+                var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                var r = decodeURI(window.location.search).substr(1).match(reg);
+//                console.log(r);
+                if (r != null) {return unescape(r[2]);}else{return null;}
+            },
+            getInfo:function(){
+                console.log("123");
+                console.log(this.id);
+                console.log(this.director);
+                if(this.id != null){
+                    this.director = false;
+                    this.show = true;
+                }
+                console.log(this.director);
+                this.$http.post('https://bingqiangzhou.cn/trainingapi/ExpandKnowledges/GetExpandKnowledge/'+this.id, {},{emulateJSON:true}).then(function (result) {
+                    this.expandKnowledge = result.data.expandKnowledge;
+                    console.log("lalala");
+                    console.log(this.expandKnowledge);
+                    console.log("lalala");
+                })
+            },
+
+        }
+    })
+</script>
+</body>
+</html>

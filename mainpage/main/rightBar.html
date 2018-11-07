@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+</head>
+
+<div id="article">
+            <div class="sider-bar-card">
+                <div class="card-title">相关资料</div>
+                <div class="card-body">
+                    <div class="list" v-for="item in resourceTypes">
+                        <a class="item" href="Resource.html">
+                            <div class="title">{{item.name}}</div>
+                            <div class="desc"></div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+</div>
+
+<script>
+new Vue({
+    el:'#article',
+                    data:{
+                        resourceTypes:[],
+                        id:'',
+                        htmlName:'',
+                        name:[]
+                    },
+                    created:function(){
+                        this.getInfo();
+                    },
+                    methods:{
+
+                        getInfo:function(){
+                            this.$http.post('https://bingqiangzhou.cn/trainingapi/ResourceTypes/GetResourceTypes', {},{emulateJSON:true}).then(function (result) {
+                                this.resourceTypes = result.data.resourceTypes;
+                                console.log(this.resourceTypes);
+                            })
+                        },
+                    }
+                })
+            </script>
+</body>
+</html>

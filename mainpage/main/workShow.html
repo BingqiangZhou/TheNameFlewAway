@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+</head>
+<body>
+<div id="sider" class="list-group sider-bar">
+<a href="javascript:void(0)" class="list-group-item active">{{title}}</a>
+<ul class="list-group sider-bar" v-for="item in info">
+<a :href = getInfosHref(item.key) class="list-group-item" v-if="name">{{item.value}}</a>
+<a :href = getInfosHref(item.id) class="list-group-item" v-if="show">{{item.name}}</a>
+</ul>
+</div>
+<script>
+    new Vue({
+        el:'#sider',
+        data:{
+            htmlName:this.getHtmlDocName,
+            url:'',
+            info:[],
+            id:'',
+            title:'',
+            show:false,
+            name:true
+        },
+        created:function(){
+            this.getHtmlDocName(),
+            this.getInfo()
+        },
+        methods: {
+            getInfo: function () {
+                if (this.htmlName == "AdvanceKnowledges") {
+                    this.url = "https://bingqiangzhou.cn/trainingapi/AdvanceKnowledges/GetAllAdvanceKnowledges";
+                    this.title = "进阶知识";
+                } else if (this.htmlName == "ExpandKnowledges") {
+                    this.url = "https://bingqiangzhou.cn/trainingapi/ExpandKnowledges/GetAllExpandKnowledges";
+                    this.title = "拓展知识";
+                }else if(this.htmlName == "Exhibition"){
+                    this.url = "https://bingqiangzhou.cn/trainingapi/ExhibitionTypes/GetAllExhibitionTypes";
+                    this.title = "作品展示";
+                    this.show = true;
+                    this.name = false;
+                }else if(this.htmlName == "Resource"){
+                    this.url = "https://bingqiangzhou.cn/trainingapi/ResourceTypes/GetResourceTypes";
+                    this.title = "相关资源";
+                    this.show = true;
+                    this.name = false;
+                }
+                this.$http.post(this.url, {}, {}).then(function (result) {
+                    this.info = this.getFirstAttr(result.data);
+
+                })
+            },
+                getInfosHref:function(val){
+                    if(this.htmlName == "AdvanceKnowledges")
+                        return 'AdvanceKnowledges.html?id='+val;
+                    else if(this.htmlName == "ExpandKnowledges")
+                        return 'ExpandKnowledges.html?id='+val;
+                    else if(this.htmlName == "Exhibition")
+                        return 'Exhibition.html?id='+val;
+                    else
+                        return 'Resource.html?id='+val;
+                },
+                getHtmlDocName:function(){
+                    var str = decodeURI(window.location.href);
+                    str = str.substring(str.lastIndexOf("/") + 1);
+                    str = str.substring(0, str.lastIndexOf("."));
+                    this.htmlName =  str;
+                },
+                getFirstAttr:function(obj){
+                    for (var k in obj) return obj[k];
+                }
+            },
+    })
+</script>
+</body>
+</html>

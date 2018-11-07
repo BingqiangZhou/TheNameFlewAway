@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+    <style>
+        .siderBar{
+            margin-top: 30px;
+            padding: 3px;
+            border: 1px solid #ccc;
+            background: #FCFDF8;
+            margin-left: -5px;
+            border-radius: 5px;
+        }
+        .siderBar li{
+              padding: 4px;
+          }
+        li{
+            list-style: none;
+        }
+        .siderBar li.item a{
+            display: block;
+            padding: 4px;
+            padding-left: 0px;
+            text-decoration: none;
+            color: #000000;
+        }
+        .siderBar li.item a:hover{
+            color: #FFFFFF;
+            background: #cccccc;
+        }
+        .item{
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+<div id="side" class="list-group sider-bar">
+    <a href="javascript:void(0)" class="list-group-item active">{{title}}</a>
+    <ul class="list-group sider-bar" v-for="item in info">
+        <a :href = getInfosHref(item.key) class="list-group-item">{{item.value}}</a>
+    </ul>
+</div>
+<script>
+    new Vue({
+        el:'#side',
+        data:{
+            id:'',
+            htmlName:this.getHtmlDocName,
+            url:'',
+            info:[],
+            title:'基础知识'
+        },
+        created:function(){
+            this.getHtmlDocName(),
+            this.getInfo()
+        },
+        methods: {
+            getInfo: function () {
+                if(this.htmlName == "index" || this.htmlName==""){
+                    this.url = "https://bingqiangzhou.cn/trainingapi/Knowledges/GetAllKnowledgesInfo";
+                }else if(this.htmlName == "Instances"){
+                    this.url = "https://bingqiangzhou.cn/trainingapi/Instances/GetAllInstances";
+                    this.title = "实例教程"
+                }
+                this.$http.post(this.url, {}, {}).then(function (result) {
+                       this.info = this.getFirstAttr(result.data);
+                        console.log(this.info);
+
+                })
+            },
+             getInfosHref:function(val){
+                 if(this.htmlName == "index")
+                   return 'index.html?id='+val;
+                 else
+                   return 'Instances.html?id='+val;
+             },
+            getHtmlDocName:function(){
+                var str = decodeURI(window.location.href);
+                str = str.substring(str.lastIndexOf("/") + 1);
+                str = str.substring(0, str.lastIndexOf("."));
+                this.htmlName =  str;
+            },
+            getFirstAttr:function(obj){
+                for (var k in obj) return obj[k];
+            }
+            }
+    })
+</script>
+</body>
+</html>

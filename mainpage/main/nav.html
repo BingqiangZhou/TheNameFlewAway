@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="Vue/vue.js"></script>
+    <script src="Vue/vue-resource.js"></script>
+
+</head>
+<body>
+<div id="login">
+    <div class="modal fade" id="modal-login" v-show="showLogin">
+        <div class="modal-dialog modal-md">  <!--大小和尺寸-->
+            <div class="modal-content">  <!--背景/边框/倒角-->
+                <div class="modal-header">
+                    <span class="close" data-dismiss="modal">&times;</span>
+                    <h3>登录  <small>没有账号?<a data-toggle="modal" data-dismiss="modal" href="#modal-regist">注册</a></small></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="username">用户名/邮箱/手机号</label>
+                        <input type="text" id="username" class="form-control" value="" placeholder="Username" v-model="phone"/>
+
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" id="password" class="form-control" value="" placeholder="Password" v-model="password" />
+
+                    </div>
+                    <div class="clearfix">
+                       <p style="color: red">{{tips}}</p>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block " id="btn-login" type="submit" @click="login">登录</button>
+                    </div>
+                    <div class="form-group"style="text-align: center">
+                        <a href="https://bingqiangzhou.cn/training">管理员登录</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<div>
+    <div class="modal fade" id="modal-regist" v-show="showRegister">
+        <div class="modal-dialog modal-md">  <!--大小和尺寸-->
+            <div class="modal-content">  <!--背景/边框/倒角-->
+                <div class="modal-header">
+                    <span class="close" data-dismiss="modal">&times;</span>
+                    <h3>注册  <small>已有账号?<a data-toggle="modal"  data-dismiss="modal" href="#modal-login">登录</a></small></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">用户名</label>
+                        <input type="text" id="name" class="form-control" value="" placeholder="phone" v-model="newname"/>
+                    </div>
+                    <div class="form-group">
+                        <label>手机号</label>
+                        <input type="password" id="rusername" class="form-control" value="" placeholder="Password" v-model="newphone"/>
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" id="rpassword" class="form-control" value="" placeholder="Password" v-model="newpassword"/>
+                    </div>
+                    <div class="form-group">
+                        <label>确认密码</label>
+                        <input type="password" id="rpassword1" class="form-control" value="" placeholder="Password" v-model="rnewpassword"/>
+                        <p style="color: red">{{tips}}</p>
+                    </div>
+
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" id="btn-regist" type="submit" @click="register">注册</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a href="index.html" class="navbar-brand">Java专题学习网</a>
+        </div>
+        <ul class="nav  navbar-nav" id="navigator">
+            <li ><a href="index.html">基础知识</a></li>
+            <li><a href="AdvanceKnowledges.html">进阶知识</a></li>
+            <li><a href="Instances.html">实例教程</a></li>
+            <li><a href="ExpandKnowledges.html">拓展知识</a></li>
+            <li><a href="Exhibition.html">作品展示</a></li>
+            <li><a href="Resource.html">相关资源</a></li>
+            <li><a href="OnlineCodeTest.html">在线测试</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav  navbar-right">
+            <li><a data-toggle="modal"  href="#modal-login" >{{username}}</a></li>
+            <li><a data-toggle="modal"  href="#modal-regist"v-show="regist">注册</a></li>
+            <li><a href="index.html" v-show="cancel"  @click="quit()">【注销】</a></li>
+        </ul>
+        <div class="nav navbar-nav  navbar-right" style="margin: 8px 10px 0 0" v-show="record">
+            <div class="btn-group">
+                <button class="btn btn-default  dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    个人中心 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="text-align: center;">
+                    <li><a :href="'https://bingqiangzhou.cn/training/uploadrecordforteacher/index/'+id">上传资源记录</a></li>
+                    <!-- :href=""+   -->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script src="bootstrap-3.3.7-dist/js/jquery-1.11.3.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('#navigator').find('li').click(function() {
+            // 为当前点击的导航加上高亮，其余的移除高亮
+            $(this).addClass('active').siblings('li').removeClass('active');
+        });
+
+    })
+</script>
+<script>
+    new Vue({
+        el:'#login',
+        data:{
+        	id:'',
+            phone:'',
+            password:'',
+            newname:'',
+            newphone:'',
+            newpassword:'',
+            rnewpassword:'',
+            status:'',
+            showLogin: true,
+            showRegister: true,
+            username:'登录',
+            regist:true,
+            cancel:false,
+            tips:'',
+            record:false,
+        },
+        mounted:function(){
+            if(this.getCookie("username")){
+                this.username = this.getCookie("username");
+                this.cancel = true;
+                this.regist = false;
+                this.id = this.getCookie("id");
+                if(this.getCookie("status") == 1){
+                    this.record = true;
+                }
+            }
+        },
+        methods:{
+            login:function(){
+                if(this.username == "" || this.password == ""){
+                    alert("请输入用户名或密码")
+                }else{
+                    this.$http.post("https://bingqiangzhou.cn/trainingapi/Users/Login?",{phone:this.phone,password:this.password},{}).then(function (result) {
+                        console.log(result.data);
+                        if(result.data.operate == true){
+                            this.username = result.data.user.name;
+                            this.status = result.data.user.status;
+                            if(result.data.user.status == 1){
+                                this.username = result.data.user.name + "老师";
+                                this.record = true;
+                            }
+                            this.id = result.data.user.id; 
+                            this.setCookie("username",this.username);
+                            this.setCookie("id",result.data.user.id);
+                            this.setCookie("status",result.data.user.status);
+                            this.showLogin = false;
+                            $('.modal-backdrop').remove();
+                            this.regist = false;
+                            this.cancel = true;
+                        }else{
+                            this.tips = "账号或密码错误";
+                        }
+                        if(this.cancel == true)
+                        {
+                            window.location.reload();
+                        }
+                    })
+                }
+            },
+            register:function(){
+                if(this.newname == "" || this.newphone == "" ||this.newpassword == " " || this.rnewpassword == "" ){
+                     this.tips = "输入有空，请输入完整";
+                } else if(this.newpassword != this.rnewpassword){
+                    this.tips = "密码输入不一致,请重新输入";
+                } else{
+                    this.$http.post("https://bingqiangzhou.cn/trainingapi/Users/AddUser?",{name:this.newname,phone:this.newphone,password:this.newpassword,status:this.status},{}).then(function (result) {
+                                console.log(result.data);
+                                if(result.data.operate == true){
+                                    this.tips = "注册成功！";
+                                    /*setTimeout(function(){*/
+                                        this.showRegister = false;
+                                      $('.modal-backdrop').remove();
+                                  /*  },2000);*/
+                                }else{
+                                    this.tips = "注册失败,请重新注册";
+                                }
+                    })
+                }
+            },
+            setCookie:function(c_name,value,expire){
+                    var date=new Date()
+                    date.setSeconds(date.getSeconds()+expire)
+                    document.cookie=c_name+ "="+escape(value)+"; expires="+date.toGMTString()
+                    console.log(document.cookie)
+
+            },
+            getCookie:function(name){
+                var strCookie=unescape(document.cookie);
+                var arrCookie=strCookie.split("; ");
+                for(var i=0;i<arrCookie.length;i++){
+                    var arr=arrCookie[i].split("=");
+                    if(arr[0]==name)return arr[1];
+                }
+                return "";
+            },
+            deleCookie:function(name){
+                this.setCookie(name, "", -1);
+
+            },
+            quit:function(){
+                this.deleCookie("username");
+                console.log("1213");
+            }
+        }
+    });
+</script>
+</body>
+</html>
