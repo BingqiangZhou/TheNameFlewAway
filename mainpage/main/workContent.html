@@ -59,19 +59,15 @@
             GetQueryString:function(name){
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                 var r = decodeURI(window.location.search).substr(1).match(reg);
-//                console.log(r);
                 if (r != null) {return unescape(r[2]);}else{return null;}
             },
             getInfo:function(){
-                /*console.log("123");
-                console.log(this.id);*/
                 if(this.id != null){
                     this.director = false;
                     this.show = true;
                 }
                 this.$http.post('https://bingqiangzhou.cn/trainingapi/AdvanceKnowledges/GetAdvanceKnowledge/'+this.id, {},{emulateJSON:true}).then(function (result) {
                     this.resources = result.data.resources;
-                    console.log(this.resources);
                 })
             }
         }

@@ -60,20 +60,18 @@
         },
         methods: {
             getInfo: function () {
-                if(this.htmlName == "index" || this.htmlName==""){
+                if(this.htmlName == "index" || this.htmlName=="itishome"){
                     this.url = "https://bingqiangzhou.cn/trainingapi/Knowledges/GetAllKnowledgesInfo";
                 }else if(this.htmlName == "Instances"){
                     this.url = "https://bingqiangzhou.cn/trainingapi/Instances/GetAllInstances";
-                    this.title = "实例教程"
+                    this.title = "实例教程";
                 }
                 this.$http.post(this.url, {}, {}).then(function (result) {
                        this.info = this.getFirstAttr(result.data);
-                        console.log(this.info);
-
                 })
             },
              getInfosHref:function(val){
-                 if(this.htmlName == "index")
+                 if(this.htmlName == "index" || this.htmlName=="itishome")
                    return 'index.html?id='+val;
                  else
                    return 'Instances.html?id='+val;
@@ -82,7 +80,14 @@
                 var str = decodeURI(window.location.href);
                 str = str.substring(str.lastIndexOf("/") + 1);
                 str = str.substring(0, str.lastIndexOf("."));
-                this.htmlName =  str;
+                if(str.length==0)
+                {
+                    this.htmlName="itishome";
+                }
+                else
+                {
+                    this.htmlName =  str;
+                }
             },
             getFirstAttr:function(obj){
                 for (var k in obj) return obj[k];

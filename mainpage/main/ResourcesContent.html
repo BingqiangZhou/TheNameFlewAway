@@ -97,8 +97,6 @@
                 if (r != null) {return unescape(r[2]);}else{ return null;}
             },
             getInfo:function(){
-                console.log("123");
-                console.log(this.id);
                 if(this.id != null){
                     this.director = false;
                     this.show = true;
@@ -106,8 +104,6 @@
                 this.$http.post('https://bingqiangzhou.cn/trainingapi/Resources/GetResources?', {typeId: this.id,
                     page: 1},{}).then(function (result) {
                     this.resource = result.data.resources;
-                    console.log("11111");
-                    console.log(this.resource);
                     this.getAddress();
                 })
             },

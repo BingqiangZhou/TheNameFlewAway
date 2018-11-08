@@ -37,7 +37,6 @@ new Vue({
                         getInfo:function(){
                             this.$http.post('https://bingqiangzhou.cn/trainingapi/ResourceTypes/GetResourceTypes', {},{emulateJSON:true}).then(function (result) {
                                 this.resourceTypes = result.data.resourceTypes;
-                                console.log(this.resourceTypes);
                             })
                         },
                     }

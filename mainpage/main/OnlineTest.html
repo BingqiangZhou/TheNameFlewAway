@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript">
+	// ajax 对象
+function ajaxObject() {
+    var xmlHttp;
+    try {
+        // Firefox, Opera 8.0+, Safari
+        xmlHttp = new XMLHttpRequest();
+        } 
+    catch (e) {
+        // Internet Explorer
+        try {
+                xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (e) {
+            try {
+                xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+            } catch (e) {
+                alert("您的浏览器不支持AJAX！");
+                return false;
+            }
+        }
+    }
+    return xmlHttp;
+}
+ 
+// ajax post请求：
+function ajaxPost ( url , data , fnSucceed , fnFail , fnLoading ) {
+    var ajax = ajaxObject();
+    ajax.open( "post" , url , true );
+    ajax.setRequestHeader( "Content-Type" , "application/x-www-form-urlencoded" );
+    ajax.onreadystatechange = function () {
+        if( ajax.readyState == 4 ) {
+            if( ajax.status == 200 ) {
+                fnSucceed( ajax.responseText );
+            }
+            else {
+                fnFail( "HTTP请求错误！错误码："+ajax.status );
+            }
+        }
+        else {
+            fnLoading();
+        }
+    }
+    ajax.send( data );
+ 
+}
+function ajaxGet ( url , data , fnSucceed , fnFail , fnLoading ) {
+    var ajax = ajaxObject();
+    ajax.open( "get" , url , true );
+    // ajax.setRequestHeader( "Content-Type" , "application/x-www-form-urlencoded" );
+    ajax.onreadystatechange = function () {
+        if( ajax.readyState == 4 ) {
+            if( ajax.status == 200 ) {
+                fnSucceed( ajax.responseText );
+            }
+            else {
+                fnFail( "HTTP请求错误！错误码："+ajax.status );
+            }
+        }
+        else {
+            fnLoading();
+        }
+    }
+    ajax.send( data );
+ 
+}
+function succeed(data)
+{
+	// console.log("hello");
+	// window.location.herf="http://acm.zju.edu.cn/onlinejudge/showProblemsets.do";
+}
+function loading()
+{
+
+}
+function fail(str)
+{
+
+}
+// numberMillis 毫秒
+
+function sleep(d){
+  for(var t = Date.now();Date.now() - t <= d;);
+}
+   // console.log("hello");
+// var win = window.open('http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456');
+// win.close();
+// var win = window.open('http://acm.zju.edu.cn/onlinejudge/showProblemsets.do');
+// ajaxPost("http://poj.org/login",{user_id1:"987654321test",password1:"123456",B1:"login"},succeed,fail,loading);
+// ajaxPost("http://acm.zju.edu.cn/onlinejudge/login.do",{handle:"987654321test",password:"123456"},succeed,fail,loading); 
+// window.location.herf="http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456";
+ajaxGet("http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456","",succeed,fail,loading); 
+window.location="http://acm.zju.edu.cn/onlinejudge/showProblemsets.do";
+</script>
+</head>
+<body>
+	<!-- <a href="http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456">hello</a> -->
+</body>
+</html>

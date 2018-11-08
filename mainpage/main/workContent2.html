@@ -64,16 +64,12 @@
                 if (r != null) {return unescape(r[2]);}else{return null;}
             },
             getInfo:function(){
-                console.log("123");
-                console.log(this.id);
                 if(this.id != null){
                     this.director = false;
                     this.show = true;
                 }
                 this.$http.post('https://bingqiangzhou.cn/trainingapi/ExhibitionTypes/GetExhibitionByExhibitionTypeId/'+this.id, {},{emulateJSON:true}).then(function (result) {
                     this.exhibitionPartInfos = result.data.exhibitionPartInfos;
-                    console.log("11111");
-                    console.log(this.exhibitionPartInfos);
                 })
             },
             getInfosHref:function(val){
