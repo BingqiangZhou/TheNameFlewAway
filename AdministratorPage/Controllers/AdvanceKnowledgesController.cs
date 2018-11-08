@@ -140,8 +140,8 @@ namespace AdministratorPage.Controllers
             {
                 resource.address = file.FileName;
                 string path = ConfigurationManager.AppSettings["Resource"];
-                var filePath = Server.MapPath(path);
-                file.SaveAs(Path.Combine(filePath, file.FileName));
+                //var filePath = Server.MapPath(path);
+                file.SaveAs(Path.Combine(path, file.FileName));
             }
             if (ModelState.IsValid)
             {
@@ -177,8 +177,8 @@ namespace AdministratorPage.Controllers
             {
                 resource.address = file.FileName;
                 string path = ConfigurationManager.AppSettings["Resource"];
-                var filePath = Server.MapPath(path);
-                file.SaveAs(Path.Combine(filePath, file.FileName));
+                //var filePath = Server.MapPath(path);
+                file.SaveAs(Path.Combine(path, file.FileName));
             }
             if (ModelState.IsValid)
             {

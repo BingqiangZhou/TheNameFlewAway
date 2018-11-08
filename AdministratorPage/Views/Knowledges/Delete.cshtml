@@ -1,27 +1,27 @@
 ﻿@model AdministratorPage.Models.Knowledge
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "基础知识管理";
     Layout = "~/Views/shared/_LayoutMain.cshtml";
 }
 
-<h2>Delete</h2>
+<h4>删除基础知识</h4>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>您确定要删除该基础知识吗？</h3>
 <div>
-    <h4>Knowledge</h4>
+    @*<h4>Knowledge</h4>*@
     <hr />
     <dl class="dl-horizontal">
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.image)
-        </dt>
+        </dt>*@
 
-        <dd>
+        @*<dd>
             @Html.DisplayFor(model => model.image)
-        </dd>
+        </dd>*@
 
         <dt>
-            @Html.DisplayNameFor(model => model.key)
+            关键词@*@Html.DisplayNameFor(model => model.key)*@
         </dt>
 
         <dd>
@@ -29,7 +29,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.resourceAddress)
+            资源地址@*@Html.DisplayNameFor(model => model.resourceAddress)*@
         </dt>
 
         <dd>
@@ -37,7 +37,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.description)
+            描述@*@Html.DisplayNameFor(model => model.description)*@
         </dt>
 
         <dd>
@@ -45,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.context)
+            内容@*@Html.DisplayNameFor(model => model.context)*@
         </dt>
 
         <dd>
@@ -58,8 +58,8 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <input type="submit" value="删除" class="btn btn-default" /> |
+            @Html.ActionLink("返回", "Index")
         </div>
     }
 </div>

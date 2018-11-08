@@ -1,7 +1,7 @@
 ﻿@{
     if (Request.Cookies["Name"] != null && Request.Cookies["Name"].Value.Equals("admin"))
     {
-        Response.Redirect("/Users/Index");
+        Response.Redirect("~/Users/Index");
     }
     ViewBag.Title = "登录";
     ViewContext.ViewBag.Title = "后台管理";

@@ -97,8 +97,8 @@ namespace AdministratorPage.Controllers
                 {
                     instance.resourceAddress = file.FileName;
                     string path = ConfigurationManager.AppSettings["Resource"];
-                    var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(filePath, file.FileName));
+                    //var filePath = Server.MapPath(path);
+                    file.SaveAs(Path.Combine(path, file.FileName));
                 }
                 db.Entry(instance).State = EntityState.Modified;
                 db.SaveChanges();
@@ -116,10 +116,10 @@ namespace AdministratorPage.Controllers
             }
             Instance instance = db.Instances.Find(id);
             var path = ConfigurationManager.AppSettings["Resource"];
-            var filePath = Server.MapPath(path);
+            //var filePath = Server.MapPath(path);
             if (instance.resourceAddress != null && !instance.resourceAddress.StartsWith("http"))
             {
-                System.IO.File.Delete(Path.Combine(filePath, instance.resourceAddress));
+                System.IO.File.Delete(Path.Combine(path, instance.resourceAddress));
             }
             if (instance == null)
             {

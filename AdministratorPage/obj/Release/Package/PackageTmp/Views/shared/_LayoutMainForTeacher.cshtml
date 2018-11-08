@@ -3,7 +3,7 @@
     {
         Response.Redirect("/Home");
     }
-    ViewBag.Name= "管理员";
+    ViewBag.Name= Request.Cookies["id"].Value+"老师";
     ViewContext.ViewBag.Title = "上传资源记录";
 }
 
@@ -13,7 +13,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - @ViewContext.ViewBag.Title</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/cover.css" rel="stylesheet" />
 </head>
 <body class="text-center">

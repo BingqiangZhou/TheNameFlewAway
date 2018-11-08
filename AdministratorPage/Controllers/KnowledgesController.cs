@@ -57,8 +57,8 @@ namespace AdministratorPage.Controllers
                 {
                     knowledge.resourceAddress = file.FileName;
                     string path = ConfigurationManager.AppSettings["Resource"];
-                    var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(filePath, file.FileName));
+                    //var filePath = Server.MapPath(path);
+                    file.SaveAs(Path.Combine(path, file.FileName));
                 }
                 db.Knowledges.Add(knowledge);
                 db.SaveChanges();
@@ -97,8 +97,8 @@ namespace AdministratorPage.Controllers
                 {
                     knowledge.resourceAddress = file.FileName;
                     string path = ConfigurationManager.AppSettings["Resource"];
-                    var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(filePath, file.FileName));
+                    //var filePath = Server.MapPath(path);
+                    file.SaveAs(Path.Combine(path, file.FileName));
                 }
                 db.Entry(knowledge).State = EntityState.Modified;
                 db.SaveChanges();
@@ -129,11 +129,11 @@ namespace AdministratorPage.Controllers
         {
             Knowledge knowledge = db.Knowledges.Find(id);
             var path = ConfigurationManager.AppSettings["Resource"];
-            var filePath = Server.MapPath(path);
-            if (knowledge.resourceAddress != null && !knowledge.resourceAddress.StartsWith("http"))
-            {
-                System.IO.File.Delete(Path.Combine(filePath, knowledge.resourceAddress));
-            }
+            //var filePath = Server.MapPath(path);
+            //if (knowledge.resourceAddress != null && !knowledge.resourceAddress.StartsWith("http"))
+            //{
+            //    System.IO.File.Delete(Path.Combine(filePath, knowledge.resourceAddress));
+            //}
             db.Knowledges.Remove(knowledge);
             db.SaveChanges();
             return RedirectToAction("Index");

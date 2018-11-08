@@ -78,8 +78,8 @@ namespace AdministratorPage.Controllers
             {
                 resource.address = file.FileName;
                 string path = ConfigurationManager.AppSettings["Resource"];
-                var filePath = Server.MapPath(path);
-                file.SaveAs(Path.Combine(filePath, file.FileName));
+                //var filePath = Server.MapPath(path);
+                file.SaveAs(Path.Combine(path, file.FileName));
                 resource.time = DateTime.Now;
             }
             if (ModelState.IsValid)
@@ -129,8 +129,8 @@ namespace AdministratorPage.Controllers
             {
                 resource.address = file.FileName;
                 string path = ConfigurationManager.AppSettings["Resource"];
-                var filePath = Server.MapPath(path);
-                file.SaveAs(Path.Combine(filePath, file.FileName));
+                //var filePath = Server.MapPath(path);
+                file.SaveAs(Path.Combine(path, file.FileName));
                 resource.time = DateTime.Now;
             }
             if (ModelState.IsValid)
@@ -163,12 +163,12 @@ namespace AdministratorPage.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Resource resource = db.Resources.Find(id);
-            var path = ConfigurationManager.AppSettings["Resource"];
-            var filePath = Server.MapPath(path);
-            if (resource.address != null && !resource.address.StartsWith("http"))
-            {
-                System.IO.File.Delete(Path.Combine(filePath, resource.address));
-            }
+            //var path = ConfigurationManager.AppSettings["Resource"];
+            //var filePath = Server.MapPath(path);
+            //if (resource.address != null && !resource.address.StartsWith("http"))
+            //{
+            //    System.IO.File.Delete(Path.Combine(filePath, resource.address));
+            //}
             db.Resources.Remove(resource);
             db.SaveChanges();
             return RedirectToAction("Index");

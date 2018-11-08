@@ -15,27 +15,22 @@
 <div class="form-horizontal">
     @*<h4>Knowledge</h4>*@
     <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-row w-100">
         @Html.Label("关键词", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.EditorFor(model => model.key, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-        @Html.ValidationMessageFor(model => model.key, "", new { @class = "text-danger" })
     </div>
     <div class="form-row w-100">
         @Html.Label("基本描述", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.TextAreaFor(model => model.description, new { @class = "form-control col-md-10", @rows = "5", @maxlength = "1000" })
-        @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
     </div>
     <div class="form-row w-100">
         @Html.Label("具体内容", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.TextAreaFor(model => model.context, new { @class = "form-control col-md-10", @rows = "5", @maxlength = "1000" })
-        @Html.ValidationMessageFor(model => model.context, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-row w-100">
         @Html.Label("资源地址", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.EditorFor(model => model.resourceAddress, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-        @Html.ValidationMessageFor(model => model.resourceAddress, "", new { @class = "text-danger" })
         <input type="file" name="file" id="file" onchange="change();" /><br />
         <script>
             function change() {
@@ -55,7 +50,3 @@
 <div>
     @Html.ActionLink("返回", "Index")
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

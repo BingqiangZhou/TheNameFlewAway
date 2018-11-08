@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrainingModelStoreContainer" CdmEntityContainer="TrainingEntities">
+    <EntitySetMapping Name="AdvanceKnowledges">
+      <EntityTypeMapping TypeName="TrainingModel.AdvanceKnowledge">
+        <MappingFragment StoreEntitySet="AdvanceKnowledge">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="imageaddress" ColumnName="imageaddress" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="context" ColumnName="context" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdvanceKonwledgeAndResources">
+      <EntityTypeMapping TypeName="TrainingModel.AdvanceKonwledgeAndResource">
+        <MappingFragment StoreEntitySet="AdvanceKonwledgeAndResource">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resourceid" ColumnName="resourceid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExhibitionTypes">
+      <EntityTypeMapping TypeName="TrainingModel.ExhibitionType">
+        <MappingFragment StoreEntitySet="ExhibitionType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExpandKnowledges">
+      <EntityTypeMapping TypeName="TrainingModel.ExpandKnowledge">
+        <MappingFragment StoreEntitySet="ExpandKnowledge">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Instances">
+      <EntityTypeMapping TypeName="TrainingModel.Instance">
+        <MappingFragment StoreEntitySet="Instance">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="resourceAddress" ColumnName="resourceAddress" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="code" ColumnName="code" />
+          <ScalarProperty Name="context" ColumnName="context" />
+          <ScalarProperty Name="result" ColumnName="result" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Knowledges">
+      <EntityTypeMapping TypeName="TrainingModel.Knowledge">
+        <MappingFragment StoreEntitySet="Knowledge">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="key" ColumnName="key" />
+          <ScalarProperty Name="resourceAddress" ColumnName="resourceAddress" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="context" ColumnName="context" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Resources">
+      <EntityTypeMapping TypeName="TrainingModel.Resource">
+        <MappingFragment StoreEntitySet="Resource">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+          <ScalarProperty Name="time" ColumnName="time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ResourceTypes">
+      <EntityTypeMapping TypeName="TrainingModel.ResourceType">
+        <MappingFragment StoreEntitySet="ResourceType">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UploadRecordForTeachers">
+      <EntityTypeMapping TypeName="TrainingModel.UploadRecordForTeacher">
+        <MappingFragment StoreEntitySet="UploadRecordForTeacher">
+          <ScalarProperty Name="sourceId" ColumnName="sourceId" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="TrainingModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exhibitions">
+      <EntityTypeMapping TypeName="TrainingModel.Exhibition">
+        <MappingFragment StoreEntitySet="Exhibition">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="resourceaddress" ColumnName="resourceaddress" />
+          <ScalarProperty Name="typeid" ColumnName="typeid" />
+          <ScalarProperty Name="coverimage" ColumnName="coverimage" />
+          <ScalarProperty Name="showimage" ColumnName="showimage" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

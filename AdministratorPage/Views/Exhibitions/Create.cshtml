@@ -15,22 +15,18 @@
     <div class="form-horizontal">
         @*<h4>Exhibition</h4>*@
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-row w-100">
             @Html.Label("作品名", htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
         </div>
         <div class="form-row w-100">
             @Html.Label("作者", htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.author, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-            @Html.ValidationMessageFor(model => model.author, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-row w-100">
             @Html.Label("效果图片", htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.showimage, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-            @Html.ValidationMessageFor(model => model.showimage, "", new { @class = "text-danger" })
             <input type="file" name="picture" id="picture" onchange="pictureChange();" /><br />
             <script>
                 function pictureChange() {
@@ -50,7 +46,6 @@
         <div class="form-row w-100">
             @Html.Label("资源地址", htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.EditorFor(model => model.resourceaddress, new { htmlAttributes = new { @class = "form-control col-md-10" } })
-            @Html.ValidationMessageFor(model => model.resourceaddress, "", new { @class = "text-danger" })
             <input type="file" name="file" id="file" onchange="change();" /><br />
             <script>
                 function change() {
@@ -64,7 +59,6 @@
         <div class="form-row w-100">
             @Html.Label("描述", htmlAttributes: new { @class = "control-label col-md-2" })
             @Html.TextAreaFor(model => model.description, new { @class = "form-control col-md-10", @rows = "5" })
-            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
         </div>
 
         <div class="form-row w-100 justify-content-center">
@@ -76,7 +70,3 @@
 <div>
     @Html.ActionLink("返回", "Index")
 </div>
-
-<script src="~/Scripts/jquery-3.0.0.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

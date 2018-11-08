@@ -13,7 +13,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title - @ViewContext.ViewBag.Title</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/cover.css" rel="stylesheet" />
 </head>
 <body class="text-center">
@@ -36,7 +36,7 @@
                                 <a class="dropdown-item" href="~/Instances/Index">实例教程管理</a>
                                 <a class="dropdown-item" href="~/Exhibitions/Index">作品展示管理</a>
                                 @*<a class="dropdown-item" href="#">Another action</a>
-        <a class="dropdown-item" href="#">Something else here</a>*@
+                                    <a class="dropdown-item" href="#">Something else here</a>*@
                             </div>
                         </div>
                         <div class="dropdown nav-masthead">
@@ -47,13 +47,13 @@
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item" href="~/Home/SignOut">退出</a>
                                 @*<a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>*@
+                                    <a class="dropdown-item" href="#">Something else here</a>*@
                             </div>
                         </div>
                     </div>
                 </div>
             </header>
-            
+
             <main role="main" class="inner cover">
                 @RenderBody()
             </main>

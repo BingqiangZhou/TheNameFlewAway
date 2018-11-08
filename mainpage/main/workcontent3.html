@@ -3,8 +3,6 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="Vue/vue.js"></script>
-    <script src="Vue/vue-resource.js"></script>
     <style>
         p{
             color: black;
@@ -37,6 +35,8 @@
     </div>
 </div>
 </div>
+<script src="Vue/vue.min.js"></script>
+    <script src="Vue/vue-resource.min.js"></script>
 <script>
     new Vue({
         el:'#article',
@@ -55,17 +55,11 @@
             GetQueryString:function(name){
                 var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
                 var r = decodeURI(window.location.search).substr(1).match(reg);
-//                console.log(r);
-                if (r != null) {this.id=unescape(r[2]); console.log(this.id);}; return null;
+                if (r != null) {this.id=unescape(r[2]); }; return null;
             },
             getInfo:function(){
-                console.log("123");
-                console.log(this.id);
                 this.$http.post('https://bingqiangzhou.cn/trainingapi/Exhibitions/GetExhibition/'+this.id, {},{emulateJSON:true}).then(function (result) {
                     this.exhibition = result.data.exhibition;
-                    console.log("11111");
-                    console.log(this.exhibition);
-                    console.log(this.exhibition.resourceaddress);
                     this.address = this.exhibition.resourceaddress;
                     this.getAddress();
                 })

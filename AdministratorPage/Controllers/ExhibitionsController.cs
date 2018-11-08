@@ -65,10 +65,10 @@ namespace AdministratorPage.Controllers
             HttpPostedFileBase file,HttpPostedFileBase picture)
         {
             string path = ConfigurationManager.AppSettings["Resource"];
-            var filePath = Server.MapPath(path);
+            //var filePath = Server.MapPath(path);
             if (file != null)
             {
-                file.SaveAs(Path.Combine(filePath, file.FileName));
+                file.SaveAs(Path.Combine(path, file.FileName));
                 exhibition.resourceaddress = file.FileName;
             }
             if (picture != null)
@@ -79,7 +79,7 @@ namespace AdministratorPage.Controllers
                     return Content("图片格式不正确，只允许上传jpg,png,gif！" +
                         "<a href=#' onClick='javascript :history.back(-1);'>返回</a>");
                 }
-                picture.SaveAs(Path.Combine(filePath, picture.FileName));
+                picture.SaveAs(Path.Combine(path, picture.FileName));
                 exhibition.showimage = picture.FileName;
             }
 
@@ -128,10 +128,10 @@ namespace AdministratorPage.Controllers
             HttpPostedFileBase file, HttpPostedFileBase picture)
         {
             string path = ConfigurationManager.AppSettings["Resource"];
-            var filePath = Server.MapPath(path);
+            //var filePath = Server.MapPath(path);
             if (file != null)
             {
-                file.SaveAs(Path.Combine(filePath, file.FileName));
+                file.SaveAs(Path.Combine(path, file.FileName));
                 exhibition.resourceaddress = file.FileName;
             }
             if (picture != null)
@@ -142,7 +142,7 @@ namespace AdministratorPage.Controllers
                     return Content("图片格式不正确，只允许上传jpg,png,gif！" +
                         "<a href=#' onClick='javascript :history.back(-1);'>返回</a>");
                 }
-                picture.SaveAs(Path.Combine(filePath, picture.FileName));
+                picture.SaveAs(Path.Combine(path, picture.FileName));
                 exhibition.showimage = picture.FileName;
             }
             if (ModelState.IsValid)
@@ -176,16 +176,16 @@ namespace AdministratorPage.Controllers
         {
             ViewBag.ResourceAddress = ConfigurationManager.AppSettings["Resource"];
             Exhibition exhibition = db.Exhibitions.Find(id);
-            var path = ConfigurationManager.AppSettings["Resource"];
-            var filePath = Server.MapPath(path);
-            if (exhibition.showimage != null && !exhibition.showimage.StartsWith("http"))
-            {
-                System.IO.File.Delete(Path.Combine(filePath, exhibition.showimage));
-            }
-            if (exhibition.resourceaddress != null && !exhibition.resourceaddress.StartsWith("http"))
-            {
-                System.IO.File.Delete(Path.Combine(filePath, exhibition.showimage));
-            }
+            //var path = ConfigurationManager.AppSettings["Resource"];
+            //var filePath = Server.MapPath(path);
+            //if (exhibition.showimage != null && !exhibition.showimage.StartsWith("http"))
+            //{
+            //    System.IO.File.Delete(Path.Combine(filePath, exhibition.showimage));
+            //}
+            //if (exhibition.resourceaddress != null && !exhibition.resourceaddress.StartsWith("http"))
+            //{
+            //    System.IO.File.Delete(Path.Combine(filePath, exhibition.showimage));
+            //}
             db.Exhibitions.Remove(exhibition);
             db.SaveChanges();
             return RedirectToAction("Index");

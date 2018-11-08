@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <title></title>
     <link rel="stylesheet" href="css/index.css"/>
-    <script src="Vue/vue.js"></script>
-    <script src="Vue/vue-resource.js"></script>
     <style>
         .test-textarea {
             width: 100%;
@@ -60,7 +58,8 @@
 
 </div>
 </div>
-
+<script src="Vue/vue.min.js"></script>
+    <script src="Vue/vue-resource.min.js"></script>
 <script>
     new Vue({
         el:'#article',
@@ -90,9 +89,6 @@
                 if (r != null) {return unescape(r[2]);}else{return null;}
             },
             getInfo:function(){
-                console.log("1111");
-                console.log(this.id);
-                console.log(this.director);
                 if(this.id != null){
                     this.director = false;
                     this.show = true;
@@ -109,8 +105,6 @@
 
                 this.$http.post(this.url+this.id, {},{emulateJSON:true}).then(function (result) {
                     this.info = this.getFirstAttr(result.data);
-                    console.log(this.info);
-                    console.log(this.info.context);
 //                    this.getAddress();
                 })
                 },

@@ -19,19 +19,16 @@
     <div class="form-row w-100 justify-content-center">
         @Html.Label("姓名", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control col-md-10", required = "required" } })
-        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-row w-100 justify-content-center">
         @Html.Label("手机号", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control col-md-10", required = "required" } })
-        @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
     </div>
 
     <div class="form-row w-100 justify-content-center">
         @Html.Label("密码", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control col-md-10", required = "required" } })
-        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
     </div>
 
     @*<div class="form-group">
@@ -51,7 +48,3 @@
 <div>
     @Html.ActionLink("返回", "Index")
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
