@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title></title>
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="bootstrap-3.3.7-dist/js/jquery-1.11.3.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body id="app">
+<div>
+<div class="modal fade" id="modal-login">
+    <div class="modal-dialog modal-md">  <!--大小和尺寸-->
+        <div class="modal-content">  <!--背景/边框/倒角-->
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">&times;</span>
+                <h3>登录  <small>没有账号?<a data-toggle="modal" data-dismiss="modal" href="#modal-regist">注册</a></small></h3>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="username">用户名/邮箱/手机号</label>
+                    <input type="text" id="username" class="form-control" value="" placeholder="Username" />
+
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" id="password" class="form-control" value="" placeholder="Password" />
+
+                </div>
+                <div class="clearfix">
+                <div class="checkbox" style="float: left">
+                            <label for="check">
+                                <input type="checkbox" id="check"/>记住我
+                            </label>
+                <p  id="tips" style="color: red"></p>
+                </div>
+                <div class=" " style="float: right"><a href="#">忘记密码?</a></div>
+
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary btn-block " id="btn-login" type="submit">登录</button>
+
+                </div>
+            </div>
+            </div>
+        </div>
+     </div>
+</div>
+<div>
+    <div class="modal fade" id="modal-regist">
+        <div class="modal-dialog modal-md">  <!--大小和尺寸-->
+            <div class="modal-content">  <!--背景/边框/倒角-->
+                <div class="modal-header">
+                    <span class="close" data-dismiss="modal">&times;</span>
+                    <h3>注册  <small>已有账号?<a data-toggle="modal"  data-dismiss="modal" href="#modal-login">登录</a></small></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">用户名</label>
+                        <input type="text" id="name" class="form-control" value="" placeholder="phone" />
+                    </div>
+                    <div class="form-group">
+                        <label>手机号</label>
+                        <input type="password" id="rusername" class="form-control" value="" placeholder="Password" />
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input type="password" id="rpassword" class="form-control" value="" placeholder="Password" />
+                    </div>
+
+                    <div class="form-group">
+                    <label>确认密码</label>
+                    <input type="password" id="rpassword1" class="form-control" value="" placeholder="Password" />
+                    <p  id="rtips" style="color: red"></p>
+                    </div>
+
+                 <div class="form-group">
+                    <button class="btn btn-primary btn-block" id="btn-regist" type="submit">注册</button>
+                </div>
+                 </div>
+               </div>
+              </div>
+            </div>
+ </div>
+
+<div class="navbar navbar-default">
+    <div class="container">
+    <div class="navbar-header">
+        <a href="index.html" class="navbar-brand">Java专题学习网</a>
+    </div>
+        <ul class="nav  navbar-nav">
+            <li class="active"><a href="#">基础知识</a></li>
+            <li><a href="#">进阶知识</a></li>
+            <li><a href="#">实例教程</a></li>
+            <li><a href="#">拓展知识</a></li>
+            <li><a href="#">学生作品展示</a></li>
+            <li><a href="#">相关资源</a></li>
+        </ul>
+        <div class="nav  navbar-nav col-sm-3 " style="margin: 8px 0 0 15px">
+        <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for...">
+               <span class="input-group-btn">
+               <button class="btn btn-success" type="button"><span class="glyphicon glyphicon-search " aria-hidden="true"></span></button>
+               </span>
+        </div>
+        </div>
+        <ul class="nav navbar-nav  navbar-right">
+            <li><a data-toggle="modal"  href="#modal-login" id="login">登录</a></li>
+            <li><a data-toggle="modal"  href="#modal-regist" id="regist">注册</a></li>
+            <li><a href="index.html" id="cancel" class="hidden">【注销】</a></li>
+        </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-sm-2">
+        <ul class="list-group sider-bar">
+            <a href="#" class="list-group-item active">教学资源</a>
+            <a href="#" class="list-group-item">Java工具软件</a>
+            <a href="#" class="list-group-item">Java基础语法知识</a>
+        </ul>
+    </div>
+    <div class="col-sm-7">
+     <div class="news-list">
+         <div class="news-list-item clearfix">
+         <div class="col-xs-4">
+             <img src="https://dummyimage.com/600x400/999999/000001&text=Eclipse" alt=""/>
+         </div>
+         <div class="col-xs-7">
+             <a href="details.html" class="title">Eclipse的下载地址及安装方法详解，使用eclipse第一课，快速上手，戳戳戳~</a>
+             <div class="info">
+                 <span><span  class="touxiang"><img src="https://dummyimage.com/600x400/baab59/ede8ed&text=%E8%B1%86%E8%B1%86" alt=""/></span>黄豆豆</span> .
+                 <span>20k评论</span> .
+                 <span>10分钟前</span>
+             </div>
+         </div>
+     </div>
+         <div class="news-list-item clearfix">
+             <div class="col-xs-4">
+                 <img src="https://dummyimage.com/600x400/999999/000001&text=Eclipse" alt=""/>
+             </div>
+             <div class="col-xs-7">
+                 <a href="details.html" class="title">Eclipse的下载地址及安装方法详解，使用eclipse第一课，快速上手，戳戳戳~</a>
+                 <div class="info">
+                     <span><span  class="touxiang"><img src="https://dummyimage.com/600x400/baab59/ede8ed&text=%E8%B1%86%E8%B1%86" alt=""/></span>黄豆豆</span> .
+                     <span>20k评论</span> .
+                     <span>10分钟前</span>
+                 </div>
+             </div>
+         </div>
+         <div class="news-list-item clearfix">
+             <div class="col-xs-4">
+                 <img src="https://dummyimage.com/600x400/999999/000001&text=Eclipse" alt=""/>
+             </div>
+             <div class="col-xs-7">
+                 <a href="details.html" href="#" class="title">Eclipse的下载地址及安装方法详解，使用eclipse第一课，快速上手，戳戳戳~</a>
+                 <div class="info">
+                     <span><span  class="touxiang"><img src="https://dummyimage.com/600x400/baab59/ede8ed&text=%E8%B1%86%E8%B1%86" alt=""/></span>黄豆豆</span> .
+                     <span>20k评论</span> .
+                     <span>10分钟前</span>
+                 </div>
+             </div>
+         </div>
+         <div class="news-list-item clearfix">
+             <div class="col-xs-4">
+                 <img src="https://dummyimage.com/600x400/999999/000001&text=Eclipse" alt=""/>
+             </div>
+             <div class="col-xs-7">
+                 <a href="details.html" class="title">Eclipse的下载地址及安装方法详解，使用eclipse第一课，快速上手，戳戳戳~</a>
+                 <div class="info">
+                     <span><span  class="touxiang"><img src="https://dummyimage.com/600x400/baab59/ede8ed&text=%E8%B1%86%E8%B1%86" alt=""/></span>黄豆豆</span> .
+                     <span>20k评论</span> .
+                     <span>10分钟前</span>
+                 </div>
+             </div>
+         </div>
+         <div class="news-list-item clearfix">
+             <div class="col-xs-4">
+                 <img src="https://dummyimage.com/600x400/999999/000001&text=Eclipse" alt=""/>
+             </div>
+             <div class="col-xs-7">
+                 <a href="details.html" class="title">Eclipse的下载地址及安装方法详解，使用eclipse第一课，快速上手，戳戳戳~</a>
+                 <div class="info">
+                     <span><span  class="touxiang"><img src="https://dummyimage.com/600x400/baab59/ede8ed&text=%E8%B1%86%E8%B1%86" alt=""/></span>黄豆豆</span> .
+                     <span>20k评论</span> .
+                     <span>10分钟前</span>
+                 </div>
+             </div>
+         </div>
+     </div>
+        <ul class="pagination" style="margin-left:50px">
+            <li><a href="#">上一页</a></li>
+            <li  class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">下一页</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-3">
+        <div class="about-bar clearfix">
+          <p>关注我</p>
+          <ul>
+              <li><a href="www.baidu.com"></a></li>
+              <li ><a class="douban" href="www.baidu.com"></a></li>
+              <li ><a class="weixin" href="www.baidu.com"></a></li>
+              <li ><a class="QQ" href="www.baidu.com"></a></li>
+          </ul>
+        </div>
+        <div class="sider-bar-card">
+                <div class="card-title">24小时热闻</div>
+                <div class="card-body">
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                    <div class="list">
+                        <a class="item">
+                            <div class="title">港珠澳大桥periam atque, delectutque,delectdelectu</div>
+                            <div class="desc">12k阅读 1k评论</div>
+                        </a>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="footer">©2018Hq 京ICP证030173号-1 京网文【2018】0934-988号</div>
+<script src="bootstrap-3.3.7-dist/js/jquery-1.11.3.js"></script>
+<script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script src="bootstrap-3.3.7-dist/js/jquery.cookie.js"></script>
+<!--<script src="index.js"></script>-->
+<<script>
+        var username;
+        var password;
+        var tips = $("#tips");
+    $("#btn-login").click(function(){
+//        alert("11111");
+         username = $.trim($("#username").val());
+         password = $.trim($("#password").val());
+        if(username == ""){
+           tips.html("请输入用户名");
+            return false;
+        }else if(password == ""){
+            tips.html("请输入密码");
+            return false;
+        }
+
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8080/User/login?phone="+username+"&password="+password,
+//            data:data,;
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                console.log(data.operate);
+                 if(data.operate == "True") {
+                    console.log("1111");
+                  /*  if(data.status){
+                         window.location = "www.baidu.com";
+                     }*/
+//                     var name = $.cookie("name", data.name);
+                    $("#login").html('<a href="javascript:;">'+ data.name+'</a>');
+                    $("#regist").addClass("hidden");
+                    $("#cancel").removeClass("hidden");
+                    $("#modal-login").modal("hide");
+                    $('.modal-backdrop').remove();
+                }else{
+                     console.log("222");
+//                     console.log(data.phone);
+                     $("#tips").html("账号或密码输入错误");
+                 }
+            },
+        });
+    });
+
+    $("#btn-regist").click(function(){
+//        alert("1111");
+       var name  = $.trim($("#name").val());
+       var username = $.trim($("#rusername").val());
+       var password = $.trim($("#rpassword").val());
+       var rpassword = $.trim($("#rpassword1").val());
+       var rtips = $("#rtips");
+       if(name == "" || username == "" ||password == " " || rpassword == "" ){
+           rtips.html("输入有空，请填写完整");
+           return false;
+       }else if(password != rpassword){
+           rtips.html("密码输入不一致,请重新输入");
+           return false;
+       }
+
+        $.ajax({
+            type:"POST",
+            url:"http://localhost:8080/User/Register?name="+name+"&phone="+username+"&password="+password,
+//            data:data,;
+            dataType:'json',
+            success:function(data){
+                console.log(data);
+                console.log(data.operate);
+                if(data.operate) {
+                    console.log("1111");
+                  $("#modal-regist").modal("hide");
+                    $('.modal-backdrop').remove();
+                    $("#modal-login").modal("show");
+
+                }else{
+                    console.log("2222");
+                    $("#rtips").html("该账号已注册");
+                }
+            },
+        });
+    });
+
+</script>
+</body>
+</html>
