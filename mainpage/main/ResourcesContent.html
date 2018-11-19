@@ -41,7 +41,7 @@
               {{item.description}}
             </div>
             <template v-if="item.address == '1'">
-                <span class="download"><a href="#" style="color:#D0011B">请登录，再下载!</a></span><span><strong>上传时间:</strong>{{item.time}}</span>
+                <span class="download"><a data-toggle="modal"  data-dismiss="modal" href="#modal-login" style="color:#D0011B">请登录!</a></span><span><strong>上传时间:</strong>{{item.time}}</span>
             </template>
             <template v-else>
                 <span class="download"><a :href="item.address" style="color:#D0011B">立即下载</a></span><span><strong>上传时间:</strong>{{item.time}}</span>

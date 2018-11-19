@@ -127,6 +127,7 @@ namespace TheNameFlewAway.Controllers
             bool operate = false;
             if (!UserExists(user.id) && FindUserByPhone(user.phone) == null)
             {
+                user.status = 0;//标记为学生
                 db.Users.Add(user);
                 int count = db.SaveChanges();
                 if (count != 0)

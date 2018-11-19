@@ -71,6 +71,7 @@ function succeed(data)
 {
 	// console.log("hello");
 	// window.location.herf="http://acm.zju.edu.cn/onlinejudge/showProblemsets.do";
+    window.location="http://acm.zju.edu.cn/onlinejudge/showProblemsets.do";
 }
 function loading()
 {
@@ -78,7 +79,8 @@ function loading()
 }
 function fail(str)
 {
-
+    window.location="http://acm.zju.edu.cn/onlinejudge/showProblemsets.do";
+    console.log("hello");
 }
 // numberMillis 毫秒
 
@@ -93,7 +95,6 @@ function sleep(d){
 // ajaxPost("http://acm.zju.edu.cn/onlinejudge/login.do",{handle:"987654321test",password:"123456"},succeed,fail,loading); 
 // window.location.herf="http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456";
 ajaxGet("http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456","",succeed,fail,loading); 
-window.location="http://acm.zju.edu.cn/onlinejudge/showProblemsets.do";
 </script>
 </head>
 <body>

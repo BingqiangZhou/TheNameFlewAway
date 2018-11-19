@@ -29,7 +29,7 @@
 <div id="article">
 <div v-show="show">
 <h2 class="news-title">{{info.key}}</h2>
-<div class="news-status">25k阅读 • 35分钟之前发布
+<div class="news-status">
     <div class="label label-default">java</div>
 </div>
 <div class="news-content">
@@ -77,10 +77,11 @@
 
         },
         created:function(){
-           this.id = this.GetQueryString("id");
+            this.id = this.GetQueryString("id");
             this.getHtmlDocName();
-            this.getInfo();
-
+            if (this.id != null && this.id != "") {
+                this.getInfo();
+            }
         },
         methods:{
             GetQueryString:function(name){

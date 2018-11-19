@@ -171,7 +171,7 @@ namespace TheNameFlewAway.Controllers
                     {
                         if (resource != null)
                         {
-                            resources.Add(resource);
+                            resources.Remove(resource);
                         }
                     }
                 }

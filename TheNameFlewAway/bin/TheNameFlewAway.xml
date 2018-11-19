@@ -1626,9 +1626,9 @@
             作品描述
             </summary>
         </member>
-        <member name="P:TheNameFlewAway.ResponseModel.ExhibitionTypeResponse.ExhibitionPartInfo.coverimage">
+        <member name="P:TheNameFlewAway.ResponseModel.ExhibitionTypeResponse.ExhibitionPartInfo.showimage">
             <summary>
-            作品封面图片
+            作品图片
             </summary>
         </member>
         <member name="M:TheNameFlewAway.ResponseModel.ExhibitionTypeResponse.ExhibitionPartInfo.#ctor(System.Int32,System.String,System.String,System.String,System.String)">
@@ -1639,7 +1639,7 @@
             <param name="name">作品名称</param>
             <param name="author">作品作者</param>
             <param name="description">作品描述</param>
-            <param name="coverimage">作品封面图片</param>
+            <param name="showimage">作品图片</param>
         </member>
         <member name="T:TheNameFlewAway.ResponseModel.ExpandKnowledgeResponse">
             <summary>

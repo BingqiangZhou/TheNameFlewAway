@@ -19,7 +19,7 @@ namespace AdministratorPage.Controllers
         // GET: Exhibitions
         public ActionResult Index()
         {
-            ViewBag.ResourceAddress = ConfigurationManager.AppSettings["Resource"];
+            ViewBag.ResourceAddress = "https://bingqiangzhou.cn/Training/AppResources/";
             ViewBag.TypeList = db.ExhibitionTypes.ToList();
             return View(db.Exhibitions.ToList());
         }

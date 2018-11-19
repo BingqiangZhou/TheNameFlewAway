@@ -112,6 +112,7 @@ namespace AdministratorPage.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Resource resource = db.Resources.Find(id);
+            //Request.Cookies["id"].Value = id.ToString();
             List<SelectListItem> listBox = new List<SelectListItem>();
             foreach (var item in db.ResourceTypes.ToList())
             {
@@ -144,6 +145,12 @@ namespace AdministratorPage.Controllers
                 //var filePath = Server.MapPath(path);
                 file.SaveAs(Path.Combine(path, file.FileName));
                 resource.time = DateTime.Now;
+            }
+            else
+            {
+                var re = db.Resources.AsNoTracking().Where(p => p.id == resource.id).FirstOrDefault();
+                resource.time = re.time??DateTime.Now;
+             //   System.Diagnostics.Debug.Write(resource.time);
             }
             if (ModelState.IsValid)
             {

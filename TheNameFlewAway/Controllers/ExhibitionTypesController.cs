@@ -55,8 +55,8 @@ namespace TheNameFlewAway.Controllers
             if (exhibitionType != null)
             {
                 exhibitionPartInfos = db.Exhibitions
-                    .Where(p => p.typeid == id).Select(p => new { p.id, p.name, p.coverimage, p.author, p.description }).ToList()
-                    .Select(p => new ExhibitionTypeResponse.ExhibitionPartInfo(p.id, p.name, p.author, p.description, p.coverimage)).ToList();
+                    .Where(p => p.typeid == id).Select(p => new { p.id, p.name, p.showimage, p.author, p.description }).ToList()
+                    .Select(p => new ExhibitionTypeResponse.ExhibitionPartInfo(p.id, p.name, p.author, p.description, p.showimage)).ToList();
                 if(exhibitionPartInfos != null)
                 {
                     operate = true;

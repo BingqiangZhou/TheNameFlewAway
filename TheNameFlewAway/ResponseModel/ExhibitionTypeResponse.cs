@@ -64,9 +64,9 @@ namespace TheNameFlewAway.ResponseModel
             /// </summary>
             public string description { get; set; }
             /// <summary>
-            /// 作品封面图片
+            /// 作品图片
             /// </summary>
-            public string coverimage { get; set; }
+            public string showimage { get; set; }
 
             /// <summary>
             /// 展示作品部分信息全参构造函数
@@ -75,14 +75,14 @@ namespace TheNameFlewAway.ResponseModel
             /// <param name="name">作品名称</param>
             /// <param name="author">作品作者</param>
             /// <param name="description">作品描述</param>
-            /// <param name="coverimage">作品封面图片</param>
-            public ExhibitionPartInfo(int id, string name, string author, string description, string coverimage)
+            /// <param name="showimage">作品图片</param>
+            public ExhibitionPartInfo(int id, string name, string author, string description, string showimage)
             {
                 this.id = id;
                 this.name = name;
                 this.author = author;
                 this.description = description;
-                this.coverimage = coverimage;
+                this.showimage = showimage;
             }
         }
     }

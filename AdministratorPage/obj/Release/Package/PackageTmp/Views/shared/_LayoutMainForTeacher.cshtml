@@ -3,7 +3,7 @@
     {
         Response.Redirect("/Home");
     }
-    ViewBag.Name= Request.Cookies["id"].Value+"老师";
+    ViewBag.Name= Request.Cookies["name"].Value+"老师";
     ViewContext.ViewBag.Title = "上传资源记录";
 }
 
@@ -28,7 +28,7 @@
                                 @ViewBag.Name
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item" href="/Home/SignOut">回到主页</a>
+                                <a class="dropdown-item" href="~/Home/SignOut">回到主页</a>
                                 @*<a class="dropdown-item" href="#">Another action</a>
             <a class="dropdown-item" href="#">Something else here</a>*@
                             </div>

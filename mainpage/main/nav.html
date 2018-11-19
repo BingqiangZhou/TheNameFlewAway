@@ -17,13 +17,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="username">用户名/邮箱/手机号</label>
-                        <input type="text" id="username" class="form-control" value="" placeholder="Username" v-model="phone"/>
+                        <label for="username">手机号</label>
+                        <input type="text" id="username" class="form-control" value="" placeholder="Phone" maxlength="11" v-model="phone"/>
 
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="password" id="password" class="form-control" value="" placeholder="Password" v-model="password" />
+                        <input type="password" id="password" class="form-control" value="" placeholder="Password" maxlength="16" v-model="password" />
 
                     </div>
                     <div class="clearfix">
@@ -52,19 +52,19 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">用户名</label>
-                        <input type="text" id="name" class="form-control" value="" placeholder="phone" v-model="newname"/>
+                        <input type="text" id="name" class="form-control" value="" placeholder="Username" maxlength="16" v-model="newname"/>
                     </div>
                     <div class="form-group">
                         <label>手机号</label>
-                        <input type="password" id="rusername" class="form-control" value="" placeholder="Password" v-model="newphone"/>
+                        <input type="password" id="rusername" class="form-control" value="" placeholder="Phone" maxlength="11" v-model="newphone"/>
                     </div>
                     <div class="form-group">
                         <label>密码</label>
-                        <input type="password" id="rpassword" class="form-control" value="" placeholder="Password" v-model="newpassword"/>
+                        <input type="password" id="rpassword" class="form-control" value="" placeholder="Password" maxlength="16" v-model="newpassword"/>
                     </div>
                     <div class="form-group">
                         <label>确认密码</label>
-                        <input type="password" id="rpassword1" class="form-control" value="" placeholder="Password" v-model="rnewpassword"/>
+                        <input type="password" id="rpassword1" class="form-control" value="" placeholder="Password"  maxlength="16" v-model="rnewpassword"/>
                         <p style="color: red">{{tips}}</p>
                     </div>
 
@@ -89,7 +89,7 @@
             <li><a href="Exhibition.html">作品展示</a></li>
             <li><a href="Resource.html">相关资源</a></li>
             <li><a href="OnlineCodeTest.html">在线测试</a></li>
-            <li><a href="OnlineTest.html">我要做题</a></li>
+            <li><a href="http://acm.zju.edu.cn/onlinejudge/login.do?handle=123456789test&password=123456" target="_blank">挑战OJ</a></li>
         </ul>
 
         <ul class="nav navbar-nav  navbar-right">
@@ -124,7 +124,29 @@
 
     })
 </script>
+<script type="text/javascript">
+	$()
+</script>
 <script>
+	function veifyPhone(phone)
+        	{
+        		if(/\d{11}$/.test(phone))
+                {
+                	if(/^1(3|8)\d{9}$/.test(phone))
+                	{
+						return true;
+					}
+					else if(/17(3|[5-8])\d{8}$/.test(phone))
+					{
+						return true;
+					}
+					else if (/15([0-3]|[5-9])\d{8}$/.test(phone))
+					{
+						return true;
+					}
+                 }
+        		return false;
+        	}
     new Vue({
         el:'#login',
         data:{
@@ -157,8 +179,8 @@
         },
         methods:{
             login:function(){
-                if(this.username == "" || this.password == ""){
-                    alert("请输入用户名或密码")
+                if(veifyPhone(this.phone) == false || this.password == ""){
+                    this.tips = "请输入完整正确的信息!";
                 }else{
                     this.$http.post("https://bingqiangzhou.cn/trainingapi/Users/Login?",{phone:this.phone,password:this.password},{}).then(function (result) {
                         console.log(result.data);
@@ -188,8 +210,8 @@
                 }
             },
             register:function(){
-                if(this.newname == "" || this.newphone == "" ||this.newpassword == " " || this.rnewpassword == "" ){
-                     this.tips = "输入有空，请输入完整";
+                if(this.newname == "" || veifyPhone(this.newphone) == false ||this.newpassword == "" || this.rnewpassword == "" ){
+                     this.tips = "请输入完整正确的手机号码";
                 } else if(this.newpassword != this.rnewpassword){
                     this.tips = "密码输入不一致,请重新输入";
                 } else{
@@ -200,6 +222,8 @@
                                     /*setTimeout(function(){*/
                                         this.showRegister = false;
                                       $('.modal-backdrop').remove();
+                                      this.showLogin = true;
+                                      $('#modal-login').modal('show');
                                   /*  },2000);*/
                                 }else{
                                     this.tips = "注册失败,请重新注册";
@@ -229,7 +253,8 @@
             },
             quit:function(){
                 this.deleCookie("username");
-                console.log("1213");
+                this.deleCookie("id");
+                this.deleCookie("status");
             }
         }
     });

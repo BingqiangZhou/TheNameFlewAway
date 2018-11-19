@@ -27,7 +27,7 @@
         </div>
         <div>
             <template v-if="address == '1'">
-                <p>下载地址:</p> <a href="#" >请登录再下载</a> </template>
+                <p>下载地址:</p> <a data-toggle="modal"  data-dismiss="modal" href="#modal-login" >请登录再下载</a> </template>
             <template v-else>
                 <p>下载地址:</p> <a :href="address" >{{exhibition.resourceaddress}}</a>
             </template>
@@ -60,7 +60,11 @@
             getInfo:function(){
                 this.$http.post('https://bingqiangzhou.cn/trainingapi/Exhibitions/GetExhibition/'+this.id, {},{emulateJSON:true}).then(function (result) {
                     this.exhibition = result.data.exhibition;
-                    this.address = this.exhibition.resourceaddress;
+                    if(this.exhibition.showimage.indexOf("http") != 0)
+                    {
+                        this.exhibition.showimage = "https://bingqiangzhou.cn/training/AppResources/"+ this.exhibition.showimage;
+                    }
+					this.address = this.exhibition.resourceaddress;
                     this.getAddress();
                 })
             },

@@ -133,6 +133,10 @@ namespace AdministratorPage.Controllers
                 file.SaveAs(Path.Combine(path, file.FileName));
                 resource.time = DateTime.Now;
             }
+            else
+            {
+                resource.time = db.Resources.Find(resource.id).time;
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(resource).State = EntityState.Modified;
