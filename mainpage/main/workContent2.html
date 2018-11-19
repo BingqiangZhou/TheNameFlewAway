@@ -10,7 +10,7 @@
     <div v-show="show">
     <div class="news-list-item clearfix" v-for="item in exhibitionPartInfos">
         <div class="col-xs-4">
-            <img :src="item.coverimage" alt=""/>
+            <img :src="item.showimage" alt=""/>
         </div>
         <div class="col-xs-7">
             <a :href= getInfosHref(item.id) class="title">{{item.name}}</a>
@@ -70,6 +70,12 @@
                 }
                 this.$http.post('https://bingqiangzhou.cn/trainingapi/ExhibitionTypes/GetExhibitionByExhibitionTypeId/'+this.id, {},{emulateJSON:true}).then(function (result) {
                     this.exhibitionPartInfos = result.data.exhibitionPartInfos;
+                    for (var i = this.exhibitionPartInfos.length - 1; i >= 0; i--) {
+                        if(this.exhibitionPartInfos[i].showimage.indexOf("http") != 0)
+                        {
+                            this.exhibitionPartInfos[i].showimage = "https://bingqiangzhou.cn/training/AppResources/"+ this.exhibitionPartInfos[i].showimage;
+                        }
+                    }
                 })
             },
             getInfosHref:function(val){
