@@ -50,3 +50,4 @@ E:\C#\ASP\Training\TheNameFlewAway\AdministratorPage\obj\Debug\AdministratorPage
 E:\C#\ASP\Training\TheNameFlewAway\AdministratorPage\obj\Debug\AdministratorPage.csproj.CopyComplete
 E:\C#\ASP\Training\TheNameFlewAway\AdministratorPage\obj\Debug\AdministratorPage.dll
 E:\C#\ASP\Training\TheNameFlewAway\AdministratorPage\obj\Debug\AdministratorPage.pdb
+E:\C#\ASP\Training\TheNameFlewAway\AdministratorPage\obj\Debug\AdministratorPage.csprojAssemblyReference.cache

@@ -11,20 +11,21 @@ namespace AdministratorPage.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            if (Request.Cookies["Name"] != null && Request.Cookies["Name"].Value.Equals("admin"))
+            {
+                return RedirectToAction("Index", "Users");
+            }
             return View("SignIn");
         }
         public ActionResult SignIn(string Password)
         {
-            if(Password.Equals("123456"))
+            if (Password.Equals("123456"))
             {
                 Response.Cookies["Name"].Value = "admin";
                 Response.Cookies["Name"].Expires = DateTime.Now.AddHours(2);
                 return RedirectToAction("Index","Users");
             }
-            else
-            {
-                return Content("你是假的假的管理员！");
-            }
+            return Content("你是假的假的管理员！");
         }
         public ActionResult SignOut()
         {

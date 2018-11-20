@@ -24,13 +24,15 @@
 
     <div class="form-row w-100 justify-content-center">
         @Html.Label("手机号", htmlAttributes: new { @class = "control-label col-md-2" })
-        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control col-md-10",maxLength="11",required = "required" } })
+        @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control col-md-10", maxLength = "11", required = "required" } })
     </div>
 
     <div class="form-row w-100 justify-content-center">
         @Html.Label("密码", htmlAttributes: new { @class = "control-label col-md-2" })
         @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control col-md-10", required = "required" } })
     </div>
+
+    @Html.HiddenFor(model => model.status)
 
     <div class="form-row w-100 justify-content-center">
         <input type="submit" value="保存" class="btn btn-default" />

@@ -34,9 +34,12 @@
             @status
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="../Users/Index?status=0">所有</a>
+            @Html.ActionLink("所有", "Index", new { status = 0 }, new { @class = "dropdown-item" })
+            @Html.ActionLink("教师", "Index", new { status = 2 }, new { @class = "dropdown-item" })
+            @Html.ActionLink("学生", "Index", new { status = 1 }, new { @class = "dropdown-item" })
+            @*<a class="dropdown-item" href="../Users/Index?status=0">所有</a>
             <a class="dropdown-item" href="../Users/Index?status=2">教师</a>
-            <a class="dropdown-item" href="../Users/Index?status=1">学生</a>
+            <a class="dropdown-item" href="../Users/Index?status=1">学生</a>*@
         </div>
     </div>
 </div>

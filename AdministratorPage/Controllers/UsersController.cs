@@ -75,7 +75,6 @@ namespace AdministratorPage.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(user);
         }
 
@@ -101,6 +100,7 @@ namespace AdministratorPage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,name,phone,password,status")] User user)
         {
+
             if (ModelState.IsValid)
             {
                 db.Entry(user).State = EntityState.Modified;

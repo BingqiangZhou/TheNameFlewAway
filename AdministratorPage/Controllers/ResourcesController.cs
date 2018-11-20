@@ -135,7 +135,8 @@ namespace AdministratorPage.Controllers
             }
             else
             {
-                resource.time = db.Resources.Find(resource.id).time;
+                var re = db.Resources.AsNoTracking().Where(p => p.id == resource.id).FirstOrDefault();
+                resource.time = re.time ?? DateTime.Now;
             }
             if (ModelState.IsValid)
             {

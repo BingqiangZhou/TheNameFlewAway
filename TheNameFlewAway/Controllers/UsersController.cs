@@ -148,6 +148,7 @@ namespace TheNameFlewAway.Controllers
         public MainResponse.DefaultResponse ModifyUser(User user)
         {
             bool operate = false;
+            user.status = 0;//标记为学生
             if (UserExists(user.id))
             {
                 db.Entry(user).State = EntityState.Modified;
