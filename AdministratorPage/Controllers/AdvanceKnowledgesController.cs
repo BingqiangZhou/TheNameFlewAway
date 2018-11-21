@@ -9,17 +9,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AdministratorPage.Models;
+using AdministratorPage.Service;
 
 namespace AdministratorPage.Controllers
 {
     public class AdvanceKnowledgesController : Controller
     {
-        private TrainingEntities db = new TrainingEntities();
+        AdvanceKnowledgeService advanceKnowledgeService = new AdvanceKnowledgeService();
+        CustomService customService = new CustomService();
+        ResourceService resourceService = new ResourceService();
 
         // GET: AdvanceKnowledges
         public ActionResult Index()
         {
-            return View(db.AdvanceKnowledges.ToList());
+            return View(advanceKnowledgeService.GetAllAdvanceKnowledges());
         }
 
         // GET: AdvanceKnowledges/Details/5
@@ -29,19 +32,12 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdvanceKnowledge advanceKnowledge = db.AdvanceKnowledges.Find(id);
+            AdvanceKnowledge advanceKnowledge = advanceKnowledgeService.GetAdvanceKnowledge(id);
             if (advanceKnowledge == null)
             {
                 return HttpNotFound();
             }
-            var resources = db.AdvanceKonwledgeAndResources.AsEnumerable().Join(db.Resources, p => p.resourceid, q => q.id,
-                (p, q) => new {p, q}).Where(p => p.p.id == id).Select(p=>new Resource()
-                {
-                    id = p.p.resourceid,
-                    name = p.q.name,
-                    description = p.q.description,
-                    address = p.q.address,
-                }).ToList();
+            var resources = advanceKnowledgeService.GetRelevantResource(id);
             ViewBag.Konwledge = resources;
             return View(advanceKnowledge);
         }
@@ -53,16 +49,13 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: AdvanceKnowledges/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,key,imageaddress,description,context")] AdvanceKnowledge advanceKnowledge)
         {
             if (ModelState.IsValid)
             {
-                db.AdvanceKnowledges.Add(advanceKnowledge);
-                db.SaveChanges();
+                advanceKnowledgeService.AddAdvanceKnowledge(advanceKnowledge);
                 return RedirectToAction("Index");
             }
 
@@ -76,7 +69,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdvanceKnowledge advanceKnowledge = db.AdvanceKnowledges.Find(id);
+            AdvanceKnowledge advanceKnowledge = advanceKnowledgeService.GetAdvanceKnowledge(id);
             if (advanceKnowledge == null)
             {
                 return HttpNotFound();
@@ -85,16 +78,13 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: AdvanceKnowledges/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,key,imageaddress,description,context")] AdvanceKnowledge advanceKnowledge)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(advanceKnowledge).State = EntityState.Modified;
-                db.SaveChanges();
+                advanceKnowledgeService.ModifyAdvanceKnowledge(advanceKnowledge);
                 return RedirectToAction("Index");
             }
             return View(advanceKnowledge);
@@ -107,7 +97,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AdvanceKnowledge advanceKnowledge = db.AdvanceKnowledges.Find(id);
+            AdvanceKnowledge advanceKnowledge = advanceKnowledgeService.GetAdvanceKnowledge(id);
             if (advanceKnowledge == null)
             {
                 return HttpNotFound();
@@ -120,9 +110,7 @@ namespace AdministratorPage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AdvanceKnowledge advanceKnowledge = db.AdvanceKnowledges.Find(id);
-            db.AdvanceKnowledges.Remove(advanceKnowledge);
-            db.SaveChanges();
+            advanceKnowledgeService.RemoveAdvanceKnowledge(id);
             return RedirectToAction("Index");
         }
         public ActionResult AddKnowLedge(int id)
@@ -136,20 +124,13 @@ namespace AdministratorPage.Controllers
             HttpPostedFileBase file,string ak)
         {
             var id = ak;
-            if (file != null)
+            if (customService.SaveFile(file))
             {
                 resource.address = file.FileName;
-                string path = ConfigurationManager.AppSettings["Resource"];
-                //var filePath = Server.MapPath(path);
-                file.SaveAs(Path.Combine(path, file.FileName));
             }
             if (ModelState.IsValid)
             {
-                db.Resources.Add(resource);
-                db.SaveChanges();
-                db.AdvanceKonwledgeAndResources.Add(
-                    new AdvanceKonwledgeAndResource() {id=int.Parse(ak),resourceid=resource.id});
-                db.SaveChanges();
+                advanceKnowledgeService.AddRelevantResource(resource, int.Parse(ak));
                 return RedirectToAction("Details/"+ak);
             }
             return View(resource);
@@ -157,14 +138,9 @@ namespace AdministratorPage.Controllers
 
         public ActionResult DeleteKnowledge(int id,int resourceid)
         {
-            AdvanceKonwledgeAndResource ak = new AdvanceKonwledgeAndResource()
-            { id = id, resourceid = resourceid };
             if (ModelState.IsValid)
             {
-                db.Resources.Remove(db.Resources.Find(resourceid));
-                db.SaveChanges();
-                db.AdvanceKonwledgeAndResources.Remove(db.AdvanceKonwledgeAndResources.Find(id, resourceid));
-                db.SaveChanges();
+                advanceKnowledgeService.RemoveRelevantResource(resourceid, id);
             }
             return RedirectToAction("Details/" + id);
         }
@@ -173,17 +149,13 @@ namespace AdministratorPage.Controllers
             HttpPostedFileBase file, string ak)
         {
             var id = ak;
-            if (file != null)
+            if (customService.SaveFile(file))
             {
                 resource.address = file.FileName;
-                string path = ConfigurationManager.AppSettings["Resource"];
-                //var filePath = Server.MapPath(path);
-                file.SaveAs(Path.Combine(path, file.FileName));
             }
             if (ModelState.IsValid)
             {
-                db.Entry(resource).State = EntityState.Modified;
-                db.SaveChanges();
+                
                 return RedirectToAction("Details/"+ak);
             }
             return View(resource);
@@ -194,7 +166,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Resource resource = db.Resources.Find(resourceid);
+            Resource resource = resourceService.GetResource(resourceid);
             if (resource == null)
             {
                 return HttpNotFound();
@@ -202,11 +174,13 @@ namespace AdministratorPage.Controllers
             return View(resource);
         }
 
-protected override void Dispose(bool disposing)
+    protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                customService.Dispose();
+                advanceKnowledgeService.Dispose();
+                resourceService.Dispose();
             }
             base.Dispose(disposing);
         }

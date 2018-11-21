@@ -7,47 +7,24 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AdministratorPage.Models;
+using AdministratorPage.Service;
 
 namespace AdministratorPage.Controllers
 {
     public class UsersController : Controller
     {
-        private TrainingEntities db = new TrainingEntities();
+        UserService userService = new UserService();
 
         // GET: Users
         public ActionResult Index(int status=0)
         {
-            if(status == 0)
-            {
-                return View(db.Users.ToList());
-            }
-            else
-            {
-                return View(db.Users.Where(
-                        delegate (User user)
-                        {
-                            if (user.status == status - 1)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    ));
-            }
-            
+             return View(userService.GetUsers(status));
         }
 
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = db.Users.Find(id);
+            User user = userService.GetUserInfo(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -62,17 +39,12 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: Users/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,name,phone,password,status")] User user)
         {
-            if (ModelState.IsValid)
+            if (userService.AddUser(user))
             {
-                user.status = 1;
-                db.Users.Add(user);
-                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -85,7 +57,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = userService.GetUserInfo(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -94,8 +66,6 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: Users/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,name,phone,password,status")] User user)
@@ -103,8 +73,7 @@ namespace AdministratorPage.Controllers
 
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                userService.EditUser(user);
                 return RedirectToAction("Index");
             }
             return View(user);
@@ -117,7 +86,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = userService.GetUserInfo(id);
             if (user == null)
             {
                 return HttpNotFound();
@@ -130,17 +99,18 @@ namespace AdministratorPage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            User user = db.Users.Find(id);
-            db.Users.Remove(user);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if(userService.DeleteUser(id))
+            {
+                return RedirectToAction("Index");
+            }
+            return HttpNotFound();
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                userService.Dispose();
             }
             base.Dispose(disposing);
         }

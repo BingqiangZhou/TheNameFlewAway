@@ -36,9 +36,17 @@
     <blockquote>      <!--内容概括-->
         <p>{{info.description}} {{info.title}}</p>
     </blockquote>
-    <div class="test-textarea"  contenteditable="true">{{info.code}}</div>
+    <div class="test-textarea"  contenteditable="false">{{info.code}}</div>
     <div>
-        <div class="test-textarea"  contenteditable="true">{{info.context}}</div>
+        <div class="test-textarea" contenteditable="false">{{info.context}}</div>
+    </div>
+    <div>
+        <template v-if="address == '1'">
+            <p>附件下载</p> <a data-toggle="modal"  data-dismiss="modal" href="#modal-login" >请登录再下载</a> 
+        </template>
+        <template v-else>
+            <p>附件下载</p> <a :href="address" >{{info.resourceAddress}}</a>
+        </template>
     </div>
 
 </div>
@@ -69,6 +77,7 @@
                url:'',
                id:'',
                show:false,
+               address:'',
 //               context:'',
                director:true,
                title:'基础知识指南',
@@ -81,6 +90,7 @@
             this.getHtmlDocName();
             if (this.id != null && this.id != "") {
                 this.getInfo();
+                this.getAddress();
             }
         },
         methods:{
@@ -117,6 +127,30 @@
                 str = str.substring(str.lastIndexOf("/") + 1);
                 str = str.substring(0, str.lastIndexOf("."));
                 this.htmlName =  str;
+            },
+            getAddress:function(){
+
+
+                if(this.getCookie("username") != ""){
+                    if(this.address.indexOf("http") != 0)
+                    {
+                        this.address = "https://bingqiangzhou.cn/training/AppResources/"+ this.address;
+                        // console.log("1111111111111");
+                    }
+                }
+                else
+                {
+                    this.address = '1'
+                }
+            },
+            getCookie:function(name){
+                var strCookie=unescape(document.cookie);
+                var arrCookie=strCookie.split("; ");
+                for(var i=0;i<arrCookie.length;i++){
+                    var arr=arrCookie[i].split("=");
+                    if(arr[0]==name)return arr[1];
+                }
+                return "";
             },
            /* getAddress:function(){
                    this.info.context = this.info.context.replaceAll("\r\n","<br/>");

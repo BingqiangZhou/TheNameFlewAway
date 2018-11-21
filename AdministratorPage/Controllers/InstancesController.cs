@@ -9,17 +9,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AdministratorPage.Models;
+using AdministratorPage.Service;
 
 namespace AdministratorPage.Controllers
 {
     public class InstancesController : Controller
     {
-        private TrainingEntities db = new TrainingEntities();
+        InstanceService instanceService = new InstanceService();
+        CustomService customService = new CustomService();
 
         // GET: Instances
         public ActionResult Index()
         {
-            return View(db.Instances.ToList());
+            return View(instanceService.GetAllInstances());
         }
 
         // GET: Instances/Details/5
@@ -29,7 +31,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instance instance = db.Instances.Find(id);
+            Instance instance = instanceService.GetInstance(id);
             if (instance == null)
             {
                 return HttpNotFound();
@@ -44,8 +46,6 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: Instances/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,resourceAddress,key,image,title,code,context,result")] Instance instance,
@@ -53,15 +53,11 @@ namespace AdministratorPage.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
+                if (customService.SaveFile(file))
                 {
                     instance.resourceAddress = file.FileName;
-                    string path = ConfigurationManager.AppSettings["Resource"];
-                    var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(filePath, file.FileName));
                 }
-                db.Instances.Add(instance);
-                db.SaveChanges();
+                instanceService.AddInstance(instance);
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +71,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instance instance = db.Instances.Find(id);
+            Instance instance = instanceService.GetInstance(id);
             if (instance == null)
             {
                 return HttpNotFound();
@@ -84,8 +80,6 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: Instances/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,resourceAddress,key,image,title,code,context,result")] Instance instance,
@@ -93,15 +87,11 @@ namespace AdministratorPage.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
+                if (customService.SaveFile(file))
                 {
                     instance.resourceAddress = file.FileName;
-                    string path = ConfigurationManager.AppSettings["Resource"];
-                    //var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(path, file.FileName));
                 }
-                db.Entry(instance).State = EntityState.Modified;
-                db.SaveChanges();
+                instanceService.ModifyInstance(instance);
                 return RedirectToAction("Index");
             }
             return View(instance);
@@ -114,12 +104,12 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Instance instance = db.Instances.Find(id);
-            var path = ConfigurationManager.AppSettings["Resource"];
+            Instance instance = instanceService.GetInstance(id);
+            
             //var filePath = Server.MapPath(path);
             if (instance.resourceAddress != null && !instance.resourceAddress.StartsWith("http"))
             {
-                System.IO.File.Delete(Path.Combine(path, instance.resourceAddress));
+                customService.RemoveFile(instance.resourceAddress);
             }
             if (instance == null)
             {
@@ -133,9 +123,7 @@ namespace AdministratorPage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Instance instance = db.Instances.Find(id);
-            db.Instances.Remove(instance);
-            db.SaveChanges();
+            instanceService.RemoveInstance(id);
             return RedirectToAction("Index");
         }
 
@@ -143,7 +131,8 @@ namespace AdministratorPage.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                customService.Dispose();
+                instanceService.Dispose();
             }
             base.Dispose(disposing);
         }

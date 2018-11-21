@@ -130,6 +130,10 @@
     <Compile Include="Controllers\ExpandKnowledgesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InstancesController.cs" />
+    <Compile Include="Service\AdvanceKnowledgeService.cs" />
+    <Compile Include="Service\ExhibitionService.cs" />
+    <Compile Include="Service\ExpandKnowledgeService.cs" />
+    <Compile Include="Service\InstanceService.cs" />
     <Compile Include="Controllers\KnowledgesController.cs" />
     <Compile Include="Controllers\ResourcesController.cs" />
     <Compile Include="Controllers\UploadRecordForTeacherController.cs" />
@@ -186,6 +190,11 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\CustomService.cs" />
+    <Compile Include="Service\KnowledgeService.cs" />
+    <Compile Include="Service\ResourceService.cs" />
+    <Compile Include="Service\UploadRecordForTeacherService.cs" />
+    <Compile Include="Service\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

@@ -9,17 +9,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AdministratorPage.Models;
+using AdministratorPage.Service;
 
 namespace AdministratorPage.Controllers
 {
     public class KnowledgesController : Controller
     {
-        private TrainingEntities db = new TrainingEntities();
-
+        KnowledgeService knowledgeService = new KnowledgeService();
+        CustomService customService = new CustomService();
         // GET: Knowledges
         public ActionResult Index()
         {
-            return View(db.Knowledges.ToList());
+            return View(knowledgeService.GetAllKnowledge());
         }
 
         // GET: Knowledges/Details/5
@@ -29,7 +30,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Knowledge knowledge = db.Knowledges.Find(id);
+            Knowledge knowledge = knowledgeService.GetKnowledge(id);
             if (knowledge == null)
             {
                 return HttpNotFound();
@@ -44,8 +45,6 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: Knowledges/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,image,key,resourceAddress,description,context")] Knowledge knowledge,
@@ -53,15 +52,11 @@ namespace AdministratorPage.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
+                if (customService.SaveFile(file))
                 {
                     knowledge.resourceAddress = file.FileName;
-                    string path = ConfigurationManager.AppSettings["Resource"];
-                    //var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(path, file.FileName));
                 }
-                db.Knowledges.Add(knowledge);
-                db.SaveChanges();
+                knowledgeService.AddKnowLedge(knowledge);
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +70,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Knowledge knowledge = db.Knowledges.Find(id);
+            Knowledge knowledge = knowledgeService.GetKnowledge(id);
             if (knowledge == null)
             {
                 return HttpNotFound();
@@ -84,8 +79,6 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: Knowledges/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,image,key,resourceAddress,description,context")] Knowledge knowledge,
@@ -93,15 +86,11 @@ namespace AdministratorPage.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (file != null)
+                if (customService.SaveFile(file))
                 {
                     knowledge.resourceAddress = file.FileName;
-                    string path = ConfigurationManager.AppSettings["Resource"];
-                    //var filePath = Server.MapPath(path);
-                    file.SaveAs(Path.Combine(path, file.FileName));
                 }
-                db.Entry(knowledge).State = EntityState.Modified;
-                db.SaveChanges();
+                knowledgeService.ModifyKnowledge(knowledge);
                 return RedirectToAction("Index");
             }
             return View(knowledge);
@@ -114,7 +103,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Knowledge knowledge = db.Knowledges.Find(id);
+            Knowledge knowledge = knowledgeService.GetKnowledge(id);
             if (knowledge == null)
             {
                 return HttpNotFound();
@@ -127,15 +116,7 @@ namespace AdministratorPage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Knowledge knowledge = db.Knowledges.Find(id);
-            var path = ConfigurationManager.AppSettings["Resource"];
-            //var filePath = Server.MapPath(path);
-            //if (knowledge.resourceAddress != null && !knowledge.resourceAddress.StartsWith("http"))
-            //{
-            //    System.IO.File.Delete(Path.Combine(filePath, knowledge.resourceAddress));
-            //}
-            db.Knowledges.Remove(knowledge);
-            db.SaveChanges();
+            knowledgeService.RemoveKnowledge(id);
             return RedirectToAction("Index");
         }
 
@@ -143,7 +124,8 @@ namespace AdministratorPage.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                knowledgeService.Dispose();
+                customService.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -7,17 +7,18 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AdministratorPage.Models;
+using AdministratorPage.Service;
 
 namespace AdministratorPage.Controllers
 {
     public class ExpandKnowledgesController : Controller
     {
-        private TrainingEntities db = new TrainingEntities();
+        ExpandKnowledgeService expandKnowledgeService = new ExpandKnowledgeService();
 
         // GET: ExpandKnowledges
         public ActionResult Index()
         {
-            return View(db.ExpandKnowledges.ToList());
+            return View(expandKnowledgeService.GetAllExpandKnowledges());
         }
 
         // GET: ExpandKnowledges/Details/5
@@ -27,7 +28,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExpandKnowledge expandKnowledge = db.ExpandKnowledges.Find(id);
+            ExpandKnowledge expandKnowledge = expandKnowledgeService.GetExpandKnowledge(id);
             if (expandKnowledge == null)
             {
                 return HttpNotFound();
@@ -42,16 +43,13 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: ExpandKnowledges/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,key,description,url")] ExpandKnowledge expandKnowledge)
         {
             if (ModelState.IsValid)
             {
-                db.ExpandKnowledges.Add(expandKnowledge);
-                db.SaveChanges();
+                expandKnowledgeService.AddExpandKnowledge(expandKnowledge);
                 return RedirectToAction("Index");
             }
 
@@ -65,7 +63,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExpandKnowledge expandKnowledge = db.ExpandKnowledges.Find(id);
+            ExpandKnowledge expandKnowledge = expandKnowledgeService.GetExpandKnowledge(id);
             if (expandKnowledge == null)
             {
                 return HttpNotFound();
@@ -74,16 +72,13 @@ namespace AdministratorPage.Controllers
         }
 
         // POST: ExpandKnowledges/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,key,description,url")] ExpandKnowledge expandKnowledge)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(expandKnowledge).State = EntityState.Modified;
-                db.SaveChanges();
+                expandKnowledgeService.ModifyExpandKnowledge(expandKnowledge);
                 return RedirectToAction("Index");
             }
             return View(expandKnowledge);
@@ -96,7 +91,7 @@ namespace AdministratorPage.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ExpandKnowledge expandKnowledge = db.ExpandKnowledges.Find(id);
+            ExpandKnowledge expandKnowledge = expandKnowledgeService.GetExpandKnowledge(id);
             if (expandKnowledge == null)
             {
                 return HttpNotFound();
@@ -109,9 +104,7 @@ namespace AdministratorPage.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            ExpandKnowledge expandKnowledge = db.ExpandKnowledges.Find(id);
-            db.ExpandKnowledges.Remove(expandKnowledge);
-            db.SaveChanges();
+            expandKnowledgeService.RemoveExpandKnowledge(id);
             return RedirectToAction("Index");
         }
 
@@ -119,7 +112,7 @@ namespace AdministratorPage.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                expandKnowledgeService.Dispose();
             }
             base.Dispose(disposing);
         }
